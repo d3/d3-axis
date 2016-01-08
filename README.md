@@ -37,19 +37,19 @@ d3.select("body").append("svg")
 
 <a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>()
 
-Constructs a new top-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are placed above the horizontal domain path.
+Constructs a new top-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn above the horizontal domain path.
 
 <a name="axisRight" href="#axisRight">#</a> d3.<b>axisRight</b>()
 
-Constructs a new right-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are placed to the right of the vertical domain path.
+Constructs a new right-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the right of the vertical domain path.
 
 <a name="axisBottom" href="#axisBottom">#</a> d3.<b>axisBottom</b>()
 
-Constructs a new bottom-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are placed below the horizontal domain path.
+Constructs a new bottom-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn below the horizontal domain path.
 
 <a name="axisLeft" href="#axisLeft">#</a> d3.<b>axisLeft</b>()
 
-Constructs a new left-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are placed to the left of the vertical domain path.
+Constructs a new left-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the left of the vertical domain path.
 
 <a name="_axis" href="#_axis">#</a> <i>axis</i>(<i>selection</i>)
 
