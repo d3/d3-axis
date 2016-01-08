@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "d3-scale": "~0.5.0",
-    "d3-selection": "~0.5.0"
+    "d3-selection": "~0.5.1"
   },
   "devDependencies": {
     "faucet": "0.0",

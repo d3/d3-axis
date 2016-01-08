@@ -48,7 +48,7 @@ export default function() {
       var ticks = tickValues == null ? (scale1.ticks ? scale1.ticks.apply(scale1, tickArguments) : scale1.domain()) : tickValues,
           format = tickFormat == null ? (scale1.tickFormat ? scale1.tickFormat.apply(scale1, tickArguments) : identity) : tickFormat,
           tick = g.selectAll(".tick").data(ticks, scale1),
-          tickEnter = tick.enter().insert("g", ".domain").attr("class", "tick").style("opacity", epsilon),
+          tickEnter = tick.enter().append("g", ".domain").attr("class", "tick").style("opacity", epsilon),
           tickExit = tick.exit().style("opacity", epsilon).remove(), // TODO transition
           tickUpdate = tick.order().style("opacity", 1), // TODO transition
           tickSpacing = Math.max(tickSizeInner, 0) + tickPadding,
