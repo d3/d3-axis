@@ -41,8 +41,8 @@ export default function() {
       var g = select(this);
 
       // Stash a snapshot of the new scale, and retrieve the old snapshot.
-      var scale0 = this.__chart__ || scale,
-          scale1 = this.__chart__ = scale.copy();
+      var scale0 = this.__axis__ || scale,
+          scale1 = this.__axis__ = scale.copy();
 
       // Ticks, or domain values for ordinal scales.
       var ticks = tickValues == null ? (scale1.ticks ? scale1.ticks.apply(scale1, tickArguments) : scale1.domain()) : tickValues,
