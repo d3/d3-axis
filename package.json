@@ -1,0 +1,38 @@
+{
+  "name": "d3-axis",
+  "version": "0.0.1",
+  "description": "Displays automatic reference lines for scales.",
+  "keywords": [
+    "d3",
+    "axis",
+    "scale",
+    "visualization"
+  ],
+  "homepage": "https://github.com/d3/d3-axis",
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike"
+  },
+  "main": "build/d3-axis.js",
+  "jsnext:main": "index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d3/d3-axis.git"
+  },
+  "scripts": {
+    "pretest": "mkdir -p build && node -e 'process.stdout.write(\"var version = \\\"\" + require(\"./package.json\").version + \"\\\"; export * from \\\"../index\\\"; export {version};\");' > build/bundle.js && rollup -f umd -g d3-scale:d3_scale,d3-selection:d3_selection -u d3-axis -n d3_axis -o build/d3-axis.js -- build/bundle.js",
+    "test": "faucet `find test -name '*-test.js'`",
+    "prepublish": "npm run test && uglifyjs build/d3-axis.js -c -m -o build/d3-axis.min.js && rm -f build/d3-axis.zip && zip -j build/d3-axis.zip -- LICENSE README.md build/d3-axis.js build/d3-axis.min.js"
+  },
+  "dependencies": {
+    "d3-scale": "~0.5.0",
+    "d3-selection": "~0.5.0"
+  },
+  "devDependencies": {
+    "faucet": "0.0",
+    "rollup": "0.24.0",
+    "tape": "4",
+    "uglify-js": "2"
+  }
+}
