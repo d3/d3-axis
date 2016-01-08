@@ -1,6 +1,6 @@
 # d3-axis
 
-…
+The axis component renders human-readable reference marks for [scales](https://github.com/d3/d3-scale). This alleviates one of the more tedious tasks in visualizing data.
 
 ## Installing
 
@@ -23,29 +23,41 @@ If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](
 
 ## API Reference
 
+Regardless of orientation, axes are always rendered at the origin. To change the position of the axis with respect to the chart, specify a [transform attribute](http://www.w3.org/TR/SVG/coords.html#TransformAttribute) on the containing element. For example:
+
+```js
+d3.select("body").append("svg")
+    .attr("class", "axis")
+    .attr("width", 1440)
+    .attr("height", 30)
+  .append("g")
+    .attr("transform", "translate(0,30)")
+    .call(axis);
+```
+
 <a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>()
 
-Constructs a new top-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
+Constructs a new top-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3. In this orientation, ticks are placed above the horizontal domain path.
 
 <a name="axisRight" href="#axisRight">#</a> d3.<b>axisRight</b>()
 
-Constructs a new right-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
+Constructs a new right-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3. In this orientation, ticks are placed to the right of the vertical domain path.
 
 <a name="axisBottom" href="#axisBottom">#</a> d3.<b>axisBottom</b>()
 
-Constructs a new bottom-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
+Constructs a new bottom-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3. In this orientation, ticks are placed below the horizontal domain path.
 
 <a name="axisLeft" href="#axisLeft">#</a> d3.<b>axisLeft</b>()
 
-Constructs a new left-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
+Constructs a new left-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3. In this orientation, ticks are placed to the left of the vertical domain path.
 
 <a name="_axis" href="#_axis">#</a> <i>axis</i>(<i>selection</i>)
 
-…
+Render the axis to the given [selection](https://github.com/d3/d3-selection) of SVG containers (either SVG or G elements). In the future, this method may support accepting a transition instead of a selection (for animating changes to an axis). It may also accept a canvas 2D rendering context.
 
 <a name="axis_scale" href="#axis_scale">#</a> <i>axis</i>.<b>scale</b>([<i>scale</i>])
 
-…
+If *scale* is specified, sets the scale and returns the axis. If *scale* is not specified, returns the current scale which defaults to a [linear scale](https://github.com/d3/d3-scale#scaleLinear).
 
 <a name="axis_ticks" href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>(<i>arguments…</i>)
 
@@ -63,28 +75,44 @@ axis.tickArguments([10]);
 
 <a name="axis_tickArguments" href="#axis_tickArguments">#</a> <i>axis</i>.<b>tickArguments</b>([<i>arguments</i>])
 
-… Most commonly, a *count* and a format *specifier*.
+If *arguments* are specified, stores the specified arguments for subsequent use in generating ticks and returns the axis. The arguments will later be passed to [*scale*.ticks](https://github.com/d3/d3-scale#continuous_ticks) to generate tick values (unless tick values are specified explicitly via [*axis*.tickValues](#axis_tickValues)). These arguments are also passed to the scale’s [tickFormat method](https://github.com/d3/d3-scale#continuous_tickFormat) to generate a tick format (unless a tick format is specified explicitly via [*axis*.tickFormat](#axis_tickFormat)). If no arguments are specified, returns the current tick arguments, which defaults to the empty array.
+
+Suitable arguments depends on the associated scale: for a [quantitative scale](https://github.com/d3/d3-scale#continuous-scales), you might specify a suggested tick count such as `[20]` or a tick count and a tick format specifier such as `[10, "$,.2f"]`; for a [time scale](https://github.com/d3/d3-scale#time-scales), a [time interval](https://github.com/d3/d3-time#intervals) such as `[d3.timeMinute, 15]` might be appropriate.
 
 <a name="axis_tickValues" href="#axis_tickValues">#</a> <i>axis</i>.<b>tickValues</b>([<i>values</i>])
 
-…
+If a *values* array is specified, the specified values are used for ticks rather than using the scale’s automatic tick generator. If *values* is null, clears any previously-set explicit tick values and reverts back to the scale’s tick generator. If *values* is not specified, returns the current tick values, which defaults to null. For example, to generate ticks at specific values:
+
+```js
+var xAxis = d3.axisBottom()
+    .scale(x)
+    .tickValues([1, 2, 3, 5, 8, 13, 21]);
+```
+
+The explicit tick values take precedent over the tick arguments set by [*axis*.tickArguments](#axis_tickArguments). However, any tick arguments will still be passed to the scale’s [tickFormat](#axis_tickFormat) function if a tick format is not also set.
 
 <a name="axis_tickFormat" href="#axis_tickFormat">#</a> <i>axis</i>.<b>tickFormat</b>([<i>format</i>])
 
-…
+If *format* is specified, sets the tick format function and returns the axis. If *format* is not specified, returns the current format function, which defaults to null. A null format indicates that the scale’s default formatter should be used, which is generated by calling [*scale*.tickFormat](https://github.com/d3/d3-scale#continuous_tickFormat). In this case, the arguments specified by [*axis*.tickArguments](#axis_tickArguments) are likewise passed to *scale*.tickFormat.
+
+See [d3-format](https://github.com/d3/d3-format) and [d3-time-format](https://github.com/d3/d3-time-format) for help creating formatters. For example, to display integers with comma-grouping for thousands:
+
+```js
+axis.tickFormat(d3.format(",.0f"));
+```
 
 <a name="axis_tickSize" href="#axis_tickSize">#</a> <i>axis</i>.<b>tickSize</b>([<i>size</i>])
 
-…
+If *size* is specified, sets the [inner](#axis_tickSizeInner) and [outer](#axis_tickSizeOuter) tick size to the specified value and returns the axis. If *size* is not specified, returns the current inner tick size, which defaults to 6.
 
 <a name="axis_tickSizeInner" href="#axis_tickSizeInner">#</a> <i>axis</i>.<b>tickSizeInner</b>([<i>size</i>])
 
-…
+If *size* is specified, sets the inner tick size to the specified value and returns the axis. If *size* is not specified, returns the current inner tick size, which defaults to 6. The inner tick size controls the length of the tick lines, offset from the native position of the axis.
 
 <a name="axis_tickSizeOuter" href="#axis_tickSizeOuter">#</a> <i>axis</i>.<b>tickSizeOuter</b>([<i>size</i>])
 
-…
+If *size* is specified, sets the outer tick size to the specified value and returns the axis. If *size* is not specified, returns the current outer tick size, which defaults to 6. The outer tick size controls the length of the square ends of the domain path, offset from the native position of the axis. Thus, the “outer ticks” are not actually ticks but part of the domain path, and their position is determined by the associated scale’s domain extent. Thus, outer ticks may overlap with the first or last inner tick. An outer tick size of 0 suppresses the square ends of the domain path, instead producing a straight line.
 
 <a name="axis_tickPadding" href="#axis_tickPadding">#</a> <i>axis</i>.<b>tickPadding</b>([<i>padding</i>])
 
-…
+If *padding* is specified, sets the padding to the specified value in pixels and returns the axis. If *padding* is not specified, returns the current padding which defaults to 3 pixels.
