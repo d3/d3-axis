@@ -53,7 +53,7 @@ Constructs a new left-oriented axis generator with a default [linear scale](http
 
 <a name="_axis" href="#_axis">#</a> <i>axis</i>(<i>selection</i>)
 
-Render the axis to the given [selection](https://github.com/d3/d3-selection) of SVG containers (either SVG or G elements). In the future, this method may support accepting a transition instead of a selection (for animating changes to an axis). It may also accept a canvas 2D rendering context.
+Render the axis to the given [selection](https://github.com/d3/d3-selection) of SVG containers (either SVG or G elements). In the future, this method may support accepting a transition instead of a selection for animating changes to an axis; it may also accept a canvas 2D rendering context.
 
 <a name="axis_scale" href="#axis_scale">#</a> <i>axis</i>.<b>scale</b>([<i>scale</i>])
 
