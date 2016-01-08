@@ -55,7 +55,7 @@ axis.tickArguments([10]);
 
 <a name="axis_tickArguments" href="#axis_tickArguments">#</a> <i>axis</i>.<b>tickArguments</b>([<i>arguments</i>])
 
-…
+… Most commonly, a *count* and a format *specifier*.
 
 <a name="axis_tickValues" href="#axis_tickValues">#</a> <i>axis</i>.<b>tickValues</b>([<i>values</i>])
 
