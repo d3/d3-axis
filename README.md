@@ -16,26 +16,34 @@ If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](
 <script src="https://d3js.org/d3-time-format.v0.3.min.js"></script>
 <script src="https://d3js.org/d3-scale.v0.5.min.js"></script>
 <script src="https://d3js.org/d3-selection.v0.5.min.js"></script>
-<script src="https://d3js.org/d3-axis.v0.0.min.js"></script>
+<script src="https://d3js.org/d3-axis.v0.1.min.js"></script>
 ```
 
 (If you’re not using [time scales](#time), you can omit d3-time and d3-time-format.) In a vanilla environment, a `d3_axis` global is exported. [Try d3-axis in your browser.](https://tonicdev.com/npm/d3-axis)
 
 ## API Reference
 
-<a name="axis" href="#axis">#</a> d3.<b>axis</b>()
+<a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>()
 
-Constructs a new axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
+Constructs a new top-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
+
+<a name="axisRight" href="#axisRight">#</a> d3.<b>axisRight</b>()
+
+Constructs a new right-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
+
+<a name="axisBottom" href="#axisBottom">#</a> d3.<b>axisBottom</b>()
+
+Constructs a new bottom-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
+
+<a name="axisLeft" href="#axisLeft">#</a> d3.<b>axisLeft</b>()
+
+Constructs a new left-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), [bottom](#axisOrientBottom) orientation, empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [tick padding](#axis_tickPadding) of 3.
 
 <a name="_axis" href="#_axis">#</a> <i>axis</i>(<i>selection</i>)
 
 …
 
 <a name="axis_scale" href="#axis_scale">#</a> <i>axis</i>.<b>scale</b>([<i>scale</i>])
-
-…
-
-<a name="axis_orient" href="#axis_orient">#</a> <i>axis</i>.<b>orient</b>([<i>orient</i>])
 
 …
 
@@ -78,25 +86,5 @@ axis.tickArguments([10]);
 …
 
 <a name="axis_tickPadding" href="#axis_tickPadding">#</a> <i>axis</i>.<b>tickPadding</b>([<i>padding</i>])
-
-…
-
-### Axis Orientations
-
-For use with [*axis*.orient](#axis_orient).
-
-<a name="axisOrientTop" href="#axisOrientTop">#</a> d3.<b>axisOrientTop</b>
-
-…
-
-<a name="axisOrientRight" href="#axisOrientRight">#</a> d3.<b>axisOrientRight</b>
-
-…
-
-<a name="axisOrientBottom" href="#axisOrientBottom">#</a> d3.<b>axisOrientBottom</b>
-
-…
-
-<a name="axisOrientLeft" href="#axisOrientLeft">#</a> d3.<b>axisOrientLeft</b>
 
 …

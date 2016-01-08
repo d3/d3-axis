@@ -3,12 +3,11 @@ import {scaleLinear} from "d3-scale";
 import {slice} from "./array";
 import identity from "./identity";
 
-var epsilon = 1e-6;
-
-export var orientTop = {name: "top"};
-export var orientRight = {name: "right"};
-export var orientBottom = {name: "bottom"};
-export var orientLeft = {name: "left"};
+var epsilon = 1e-6,
+    top = {},
+    right = {},
+    bottom = {},
+    left = {};
 
 function transformX(selection, x0, x1) {
   selection.attr("transform", function(d) {
@@ -26,9 +25,8 @@ function transformY(selection, y0, y1) {
   });
 }
 
-export default function() {
+function axis(orient) {
   var scale = scaleLinear(),
-      orient = orientBottom,
       tickArguments = [],
       tickValues = null,
       tickFormat = null,
@@ -67,10 +65,10 @@ export default function() {
           text = tick.select("text").text(format),
           textEnter = tickEnter.select("text"),
           textUpdate = tickUpdate.select("text"),
-          sign = orient === orientTop || orient === orientLeft ? -1 : 1,
+          sign = orient === top || orient === left ? -1 : 1,
           x1, x2, y1, y2;
 
-      if (orient === orientLeft || orient === orientRight) {
+      if (orient === left || orient === right) {
         tickTransform = transformY, x1 = "y", y1 = "x", x2 = "y2", y2 = "x2";
         text.attr("dy", ".32em").style("text-anchor", sign < 0 ? "end" : "start");
         pathUpdate.attr("d", "M" + sign * tickSizeOuter + "," + range[0] + "H0V" + range[1] + "H" + sign * tickSizeOuter);
@@ -98,15 +96,6 @@ export default function() {
 
   axis.scale = function(_) {
     return arguments.length ? (scale = _, axis) : scale;
-  };
-
-  axis.orient = function(_) {
-    if (!arguments.length) return orient;
-    switch (_) {
-      case orientTop: case orientRight: case orientLeft: orient = _; return axis;
-      default: orient = orientBottom; break;
-    }
-    return axis;
   };
 
   axis.ticks = function() {
@@ -142,4 +131,20 @@ export default function() {
   };
 
   return axis;
+}
+
+export function axisTop() {
+  return axis(top);
+};
+
+export function axisRight() {
+  return axis(right);
+};
+
+export function axisBottom() {
+  return axis(bottom);
+};
+
+export function axisLeft() {
+  return axis(left);
 };
