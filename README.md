@@ -39,7 +39,21 @@ Constructs a new axis generator with a default [linear scale](https://github.com
 
 …
 
-<a name="axis_ticks" href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>([<i>arguments…</i>])
+<a name="axis_ticks" href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>(<i>arguments…</i>)
+
+A convenience function for setting the [tick arguments](#axis_tickArguments). For example, this:
+
+```js
+axis.ticks(10);
+```
+
+Is equivalent to:
+
+```js
+axis.tickArguments([10]);
+```
+
+<a name="axis_tickArguments" href="#axis_tickArguments">#</a> <i>axis</i>.<b>tickArguments</b>([<i>arguments</i>])
 
 …
 

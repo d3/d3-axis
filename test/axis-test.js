@@ -6,7 +6,7 @@ tape("axis() has the expected defaults", function(test) {
   test.deepEqual(a.scale().domain(), [0, 1]);
   test.deepEqual(a.scale().range(), [0, 1]);
   test.equal(a.orient(), axis.axisOrientBottom);
-  test.deepEqual(a.ticks(), []);
+  test.equal(a.tickArguments(), null);
   test.equal(a.tickValues(), null);
   test.equal(a.tickFormat(), null);
   test.equal(a.tickSize(), 6);
@@ -30,11 +30,17 @@ tape("axis.orient(orient) reverts to bottom for unknown orientations", function(
   test.end();
 });
 
-tape("axis.ticks() makes a defensive copy of the tick arguments", function(test) {
-  var a = axis.axis().ticks(20),
-      v = a.ticks();
+tape("axis.ticks(arguments…) sets the tick arguments", function(test) {
+  var a = axis.axis().ticks(20);
+  test.deepEqual(a.tickArguments(), [20]);
+  test.end();
+});
+
+tape("axis.tickArguments() makes a defensive copy of the tick arguments", function(test) {
+  var a = axis.axis().tickArguments([20]),
+      v = a.tickArguments();
   v.push(10);
-  test.deepEqual(a.ticks(), [20]);
+  test.deepEqual(a.tickArguments(), [20]);
   test.end();
 });
 

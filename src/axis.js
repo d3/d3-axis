@@ -29,7 +29,7 @@ function transformY(selection, y0, y1) {
 export default function() {
   var scale = scaleLinear(),
       orient = orientBottom,
-      tickArguments = [],
+      tickArguments = null,
       tickValues = null,
       tickFormat = null,
       tickSizeInner = 6,
@@ -110,7 +110,11 @@ export default function() {
   };
 
   axis.ticks = function() {
-    return arguments.length ? (tickArguments = slice.call(arguments), axis) : tickArguments.slice();
+    return axis.tickArguments(arguments);
+  };
+
+  axis.tickArguments = function(_) {
+    return arguments.length ? (tickArguments = _ == null ? null : slice.call(_), axis) : tickArguments && tickArguments.slice();
   };
 
   axis.tickValues = function(_) {
