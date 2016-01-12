@@ -35,21 +35,21 @@ d3.select("body").append("svg")
     .call(axis);
 ```
 
-<a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>()
+<a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>(<i>scale</i>)
 
-Constructs a new top-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn above the horizontal domain path.
+Constructs a new top-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn above the horizontal domain path.
 
-<a name="axisRight" href="#axisRight">#</a> d3.<b>axisRight</b>()
+<a name="axisRight" href="#axisRight">#</a> d3.<b>axisRight</b>(<i>scale</i>)
 
-Constructs a new right-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the right of the vertical domain path.
+Constructs a new right-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the right of the vertical domain path.
 
-<a name="axisBottom" href="#axisBottom">#</a> d3.<b>axisBottom</b>()
+<a name="axisBottom" href="#axisBottom">#</a> d3.<b>axisBottom</b>(<i>scale</i>)
 
-Constructs a new bottom-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn below the horizontal domain path.
+Constructs a new bottom-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn below the horizontal domain path.
 
-<a name="axisLeft" href="#axisLeft">#</a> d3.<b>axisLeft</b>()
+<a name="axisLeft" href="#axisLeft">#</a> d3.<b>axisLeft</b>(<i>scale</i>)
 
-Constructs a new left-oriented axis generator with a default [linear scale](https://github.com/d3/d3-scale#linear), empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the left of the vertical domain path.
+Constructs a new left-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the left of the vertical domain path.
 
 <a name="_axis" href="#_axis">#</a> <i>axis</i>(<i>selection</i>)
 
@@ -84,8 +84,7 @@ Suitable arguments depends on the associated scale: for a [quantitative scale](h
 If a *values* array is specified, the specified values are used for ticks rather than using the scale’s automatic tick generator. If *values* is null, clears any previously-set explicit tick values and reverts back to the scale’s tick generator. If *values* is not specified, returns the current tick values, which defaults to null. For example, to generate ticks at specific values:
 
 ```js
-var xAxis = d3.axisBottom()
-    .scale(x)
+var xAxis = d3.axisBottom(x)
     .tickValues([1, 2, 3, 5, 8, 13, 21]);
 ```
 

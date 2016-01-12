@@ -1,5 +1,4 @@
 import {select} from "d3-selection";
-import {scaleLinear} from "d3-scale";
 import {slice} from "./array";
 import identity from "./identity";
 
@@ -25,9 +24,8 @@ function transformY(selection, y0, y1) {
   });
 }
 
-function axis(orient) {
-  var scale = scaleLinear(),
-      tickArguments = [],
+function axis(orient, scale) {
+  var tickArguments = [],
       tickValues = null,
       tickFormat = null,
       tickSizeInner = 6,
@@ -133,18 +131,18 @@ function axis(orient) {
   return axis;
 }
 
-export function axisTop() {
-  return axis(top);
+export function axisTop(scale) {
+  return axis(top, scale);
 };
 
-export function axisRight() {
-  return axis(right);
+export function axisRight(scale) {
+  return axis(right, scale);
 };
 
-export function axisBottom() {
-  return axis(bottom);
+export function axisBottom(scale) {
+  return axis(bottom, scale);
 };
 
-export function axisLeft() {
-  return axis(left);
+export function axisLeft(scale) {
+  return axis(left, scale);
 };
