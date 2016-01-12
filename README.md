@@ -57,7 +57,7 @@ Render the axis to the given [selection](https://github.com/d3/d3-selection) of 
 
 <a name="axis_scale" href="#axis_scale">#</a> <i>axis</i>.<b>scale</b>([<i>scale</i>])
 
-If *scale* is specified, sets the scale and returns the axis. If *scale* is not specified, returns the current scale which defaults to a [linear scale](https://github.com/d3/d3-scale#scaleLinear).
+If *scale* is specified, sets the scale and returns the axis. If *scale* is not specified, returns the current scale.
 
 <a name="axis_ticks" href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>(<i>arguments…</i>)
 
