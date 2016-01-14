@@ -2,26 +2,40 @@ import {select} from "d3-selection";
 import {slice} from "./array";
 import identity from "./identity";
 
-var epsilon = 1e-6,
-    top = {},
+var top = {},
     right = {},
     bottom = {},
     left = {};
 
-function transformX(selection, x0, x1) {
-  selection.attr("transform", function(d) {
-    var x = x0(d);
-    if (!isFinite(x)) x = x1(d);
-    return "translate(" + x + ",0)";
-  });
+function translateX(scale) {
+  return function(d) {
+    return "translate(" + scale(d) + ",0)";
+  };
 }
 
-function transformY(selection, y0, y1) {
-  selection.attr("transform", function(d) {
-    var y = y0(d);
-    if (!isFinite(y)) y = y1(d);
-    return "translate(0," + y + ")";
-  });
+function translateY(scale) {
+  return function(d) {
+    return "translate(0," + scale(d) + ")";
+  };
+}
+
+function center(scale) {
+  var width = scale.bandwidth() / 2;
+  return function(d) {
+    return scale(d) + width;
+  };
+}
+
+function pathUpdate(path) {
+  path.enter().append("path").attr("class", "domain");
+}
+
+function tickUpdate(tick) {
+  tick.exit().remove();
+  var tickEnter = tick.enter().append("g", ".domain").attr("class", "tick");
+  tickEnter.append("line");
+  tickEnter.append("text");
+  tick.order();
 }
 
 function axis(orient, scale) {
@@ -33,62 +47,49 @@ function axis(orient, scale) {
       tickPadding = 3;
 
   function axis(g) {
+    var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
+        format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity) : tickFormat,
+        spacing = Math.max(tickSizeInner, 0) + tickPadding,
+        position = scale.bandwidth ? center(scale) : scale,
+        range = scale.range();
+
     g.each(function() {
-      var g = select(this);
+      var g = select(this),
+          path = g.selectAll(".domain").data([null]).call(pathUpdate),
+          tick = g.selectAll(".tick").data(values, scale).call(tickUpdate),
+          line = tick.select("line"),
+          text = tick.select("text").text(format);
 
-      // Stash a snapshot of the new scale, and retrieve the old snapshot.
-      var scale0 = this.__axis__ || scale,
-          scale1 = this.__axis__ = scale.copy();
-
-      // Ticks, or domain values for ordinal scales.
-      var ticks = tickValues == null ? (scale1.ticks ? scale1.ticks.apply(scale1, tickArguments) : scale1.domain()) : tickValues,
-          format = tickFormat == null ? (scale1.tickFormat ? scale1.tickFormat.apply(scale1, tickArguments) : identity) : tickFormat,
-          tick = g.selectAll(".tick").data(ticks, scale1),
-          tickEnter = tick.enter().append("g", ".domain").attr("class", "tick").style("opacity", epsilon),
-          tickExit = tick.exit().style("opacity", epsilon).remove(), // TODO transition
-          tickUpdate = tick.order().style("opacity", 1), // TODO transition
-          tickSpacing = Math.max(tickSizeInner, 0) + tickPadding,
-          tickTransform;
-
-      // Domain.
-      var range = scale1.range(),
-          path = g.selectAll(".domain").data([0]),
-          pathUpdate = path.enter().append("path").attr("class", "domain"); // TODO transition
-
-      tickEnter.append("line");
-      tickEnter.append("text");
-
-      var lineEnter = tickEnter.select("line"),
-          lineUpdate = tickUpdate.select("line"),
-          text = tick.select("text").text(format),
-          textEnter = tickEnter.select("text"),
-          textUpdate = tickUpdate.select("text"),
-          sign = orient === top || orient === left ? -1 : 1,
-          x1, x2, y1, y2;
-
-      if (orient === left || orient === right) {
-        tickTransform = transformY, x1 = "y", y1 = "x", x2 = "y2", y2 = "x2";
-        text.attr("dy", ".32em").style("text-anchor", sign < 0 ? "end" : "start");
-        pathUpdate.attr("d", "M" + sign * tickSizeOuter + "," + range[0] + "H0V" + range[1] + "H" + sign * tickSizeOuter);
-      } else {
-        tickTransform = transformX, x1 = "x", y1 = "y", x2 = "x2", y2 = "y2";
-        text.attr("dy", sign < 0 ? "0em" : ".71em").style("text-anchor", "middle");
-        pathUpdate.attr("d", "M" + range[0] + "," + sign * tickSizeOuter + "V0H" + range[1] + "V" + sign * tickSizeOuter);
+      switch (orient) {
+        case top: {
+          path.attr("d", "M" + range[0] + "," + -tickSizeOuter + "V0H" + range[1] + "V" + -tickSizeOuter);
+          tick.attr("transform", translateX(position));
+          line.attr("x2", 0).attr("y2", -tickSizeInner);
+          text.attr("x", 0).attr("y", -spacing).attr("dy", "0em").style("text-anchor", "middle");
+          break;
+        }
+        case right: {
+          path.attr("d", "M" + tickSizeOuter + "," + range[0] + "H0V" + range[1] + "H" + tickSizeOuter);
+          tick.attr("transform", translateY(position));
+          line.attr("y2", 0).attr("x2", tickSizeInner);
+          text.attr("y", 0).attr("x", spacing).attr("dy", ".32em").style("text-anchor", "start");
+          break;
+        }
+        case bottom: {
+          path.attr("d", "M" + range[0] + "," + tickSizeOuter + "V0H" + range[1] + "V" + tickSizeOuter);
+          tick.attr("transform", translateX(position));
+          line.attr("x2", 0).attr("y2", tickSizeInner);
+          text.attr("x", 0).attr("y", spacing).attr("dy", ".71em").style("text-anchor", "middle");
+          break;
+        }
+        case left: {
+          path.attr("d", "M" + -tickSizeOuter + "," + range[0] + "H0V" + range[1] + "H" + -tickSizeOuter);
+          tick.attr("transform", translateY(position));
+          line.attr("y2", 0).attr("x2", -tickSizeInner);
+          text.attr("y", 0).attr("x", -spacing).attr("dy", ".32em").style("text-anchor", "end");
+          break;
+        }
       }
-
-      lineEnter.attr(y2, sign * tickSizeInner);
-      textEnter.attr(y1, sign * tickSpacing);
-      lineUpdate.attr(x2, 0).attr(y2, sign * tickSizeInner);
-      textUpdate.attr(x1, 0).attr(y1, sign * tickSpacing);
-
-      if (scale1.bandwidth) {
-        var x = scale1, dx = x.bandwidth() / 2;
-        scale1 = function(d) { return x(d) + dx; };
-      }
-
-      tickEnter.call(tickTransform, scale0, scale1);
-      tickUpdate.call(tickTransform, scale1, scale1);
-      tickExit.call(tickTransform, scale1, scale0);
     });
   }
 

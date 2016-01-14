@@ -15,8 +15,8 @@ If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](
 <script src="https://d3js.org/d3-time.v0.2.min.js"></script>
 <script src="https://d3js.org/d3-time-format.v0.3.min.js"></script>
 <script src="https://d3js.org/d3-scale.v0.5.min.js"></script>
-<script src="https://d3js.org/d3-selection.v0.5.min.js"></script>
-<script src="https://d3js.org/d3-axis.v0.1.min.js"></script>
+<script src="https://d3js.org/d3-selection.v0.6.min.js"></script>
+<script src="https://d3js.org/d3-axis.v0.2.min.js"></script>
 ```
 
 (If you’re not using [time scales](#time), you can omit d3-time and d3-time-format.) In a vanilla environment, a `d3_axis` global is exported. [Try d3-axis in your browser.](https://tonicdev.com/npm/d3-axis)
