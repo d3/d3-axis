@@ -134,16 +134,16 @@ function axis(orient, scale) {
 
 export function axisTop(scale) {
   return axis(top, scale);
-};
+}
 
 export function axisRight(scale) {
   return axis(right, scale);
-};
+}
 
 export function axisBottom(scale) {
   return axis(bottom, scale);
-};
+}
 
 export function axisLeft(scale) {
   return axis(left, scale);
-};
+}
