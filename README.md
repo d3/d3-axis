@@ -16,6 +16,10 @@ If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](
 <script src="https://d3js.org/d3-time-format.v0.3.min.js"></script>
 <script src="https://d3js.org/d3-scale.v0.6.min.js"></script>
 <script src="https://d3js.org/d3-selection.v0.6.min.js"></script>
+<script src="https://d3js.org/d3-ease.v0.7.min.js"></script>
+<script src="https://d3js.org/d3-timer.v0.4.min.js"></script>
+<script src="https://d3js.org/d3-dispatch.v0.4.min.js"></script>
+<script src="https://d3js.org/d3-transition.v0.1.min.js"></script>
 <script src="https://d3js.org/d3-axis.v0.2.min.js"></script>
 ```
 
