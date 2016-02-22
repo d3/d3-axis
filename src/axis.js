@@ -44,14 +44,13 @@ function axis(orient, scale) {
 
     var selection = context.selection ? context.selection() : context,
         path = selection.selectAll(".domain").data([null]),
-        pathEnter = path.enter().append("path").attr("class", "domain"),
         tick = selection.selectAll(".tick").data(values, scale).order(),
         tickExit = tick.exit(),
         tickEnter = tick.enter().append("g", ".domain").attr("class", "tick"),
         line = tick.select("line"),
         text = tick.select("text");
 
-    path = path.merge(pathEnter);
+    path = path.merge(path.enter().append("path").attr("class", "domain"));
     tick = tick.merge(tickEnter);
     line = line.merge(tickEnter.append("line"));
     text = text.merge(tickEnter.append("text"));
@@ -59,14 +58,14 @@ function axis(orient, scale) {
     if (context !== selection) {
       path = path.transition(context);
       tick = tick.transition(context);
-      tickExit = tickExit.transition(context).style("fill-opacity", epsilon).style("stroke-opacity", epsilon).attr("transform", function(d) { return transform(position, this.parentNode.__axis || position, d); });
-      tickEnter.style("fill-opacity", epsilon).style("stroke-opacity", epsilon).attr("transform", function(d) { return transform(this.parentNode.__axis || position, position, d); });
+      tickExit = tickExit.transition(context).style("opacity", epsilon).attr("transform", function(d) { return transform(position, this.parentNode.__axis || position, d); });
+      tickEnter.style("opacity", epsilon).attr("transform", function(d) { return transform(this.parentNode.__axis || position, position, d); });
       line = line.transition(context);
       text = text.transition(context);
     }
 
     tickExit.remove();
-    tick.style("fill-opacity", 1).style("stroke-opacity", 1).attr("transform", function(d) { return transform(position, position, d); });
+    tick.style("opacity", 1).attr("transform", function(d) { return transform(position, position, d); });
     text.text(format);
 
     switch (orient) {
