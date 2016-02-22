@@ -55,9 +55,9 @@ Constructs a new bottom-oriented axis generator for the given [scale](https://gi
 
 Constructs a new left-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the left of the vertical domain path.
 
-<a name="_axis" href="#_axis">#</a> <i>axis</i>(<i>selection</i>)
+<a name="_axis" href="#_axis">#</a> <i>axis</i>(<i>context</i>)
 
-Render the axis to the given [selection](https://github.com/d3/d3-selection) of SVG containers (either SVG or G elements). In the future, this method may support accepting a transition instead of a selection for animating changes to an axis; it may also accept a canvas 2D rendering context.
+Render the axis to the given *context*, which may be either a [selection](https://github.com/d3/d3-selection) of SVG containers (either SVG or G elements) or a corresponding [transition](https://github.com/d3/d3-transition).
 
 <a name="axis_scale" href="#axis_scale">#</a> <i>axis</i>.<b>scale</b>([<i>scale</i>])
 
