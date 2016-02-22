@@ -64,8 +64,8 @@ function axis(orient, scale) {
       text = text.transition(context);
     }
 
-    tickExit.remove();
     tick.style("opacity", 1).attr("transform", function(d) { return transform(position, position, d); });
+    tickExit.remove();
     text.text(format);
 
     switch (orient) {
