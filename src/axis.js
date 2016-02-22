@@ -40,9 +40,8 @@ function axis(orient, scale) {
         range = scale.range(),
         range0 = range[0],
         range1 = range[range.length - 1],
-        position = (scale.bandwidth ? center : identity)(scale.copy());
-
-    var selection = context.selection ? context.selection() : context,
+        position = (scale.bandwidth ? center : identity)(scale.copy()),
+        selection = context.selection ? context.selection() : context,
         path = selection.selectAll(".domain").data([null]),
         tick = selection.selectAll(".tick").data(values, scale).order(),
         tickExit = tick.exit(),

@@ -20,7 +20,7 @@ If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](
 <script src="https://d3js.org/d3-ease.v0.7.min.js"></script>
 <script src="https://d3js.org/d3-timer.v0.4.min.js"></script>
 <script src="https://d3js.org/d3-transition.v0.2.min.js"></script>
-<script src="https://d3js.org/d3-axis.v0.2.min.js"></script>
+<script src="https://d3js.org/d3-axis.v0.3.min.js"></script>
 ```
 
 (If you’re not using [time scales](#time), you can omit d3-time and d3-time-format.) In a vanilla environment, a `d3_axis` global is exported. [Try d3-axis in your browser.](https://tonicdev.com/npm/d3-axis)
