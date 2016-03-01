@@ -1,4 +1,8 @@
 export {
+  version
+} from "./build/version";
+
+export {
   axisTop,
   axisRight,
   axisBottom,
