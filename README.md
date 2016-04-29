@@ -14,7 +14,7 @@ If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](
 <script src="https://d3js.org/d3-interpolate.v0.5.min.js"></script>
 <script src="https://d3js.org/d3-time.v0.2.min.js"></script>
 <script src="https://d3js.org/d3-time-format.v0.3.min.js"></script>
-<script src="https://d3js.org/d3-scale.v0.6.min.js"></script>
+<script src="https://d3js.org/d3-scale.v0.7.min.js"></script>
 <script src="https://d3js.org/d3-selection.v0.7.min.js"></script>
 <script src="https://d3js.org/d3-dispatch.v0.4.min.js"></script>
 <script src="https://d3js.org/d3-ease.v0.7.min.js"></script>
@@ -108,6 +108,14 @@ See [d3-format](https://github.com/d3/d3-format) and [d3-time-format](https://gi
 ```js
 axis.tickFormat(d3.format(",.0f"));
 ```
+
+More commonly, a format specifier is passed to [*axis*.ticks](#axis_ticks):
+
+```js
+axis.ticks(10, ",f");
+```
+
+This has the advantage of setting the format precision automatically based on the tick interval.
 
 <a name="axis_tickSize" href="#axis_tickSize">#</a> <i>axis</i>.<b>tickSize</b>([<i>size</i>])
 
