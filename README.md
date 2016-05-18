@@ -4,7 +4,7 @@ The axis component renders human-readable reference marks for [scales](https://g
 
 ## Installing
 
-If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](https://github.com/d3/d3-axis/releases/latest). You can also load directly from [d3js.org](https://d3js.org), either as a [standalone library](https://d3js.org/d3-axis.v0.3.min.js) or as part of [D3 4.0 alpha](https://github.com/mbostock/d3/tree/4). (Some dependencies are optional.) AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3_axis` global is exported:
+If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](https://github.com/d3/d3-axis/releases/latest). You can also load directly from [d3js.org](https://d3js.org), either as a [standalone library](https://d3js.org/d3-axis.v0.3.min.js) or as part of [D3 4.0](https://github.com/d3/d3). (Some dependencies are optional.) AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3_axis` global is exported:
 
 ```html
 <script src="https://d3js.org/d3-array.v0.7.min.js"></script>
