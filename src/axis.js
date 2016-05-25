@@ -38,8 +38,8 @@ function axis(orient, scale) {
         spacing = Math.max(tickSizeInner, 0) + tickPadding,
         transform = orient === top || orient === bottom ? translateX : translateY,
         range = scale.range(),
-        range0 = range[0],
-        range1 = range[range.length - 1],
+        range0 = range[0] + 0.5,
+        range1 = range[range.length - 1] + 0.5,
         position = (scale.bandwidth ? center : identity)(scale.copy()),
         selection = context.selection ? context.selection() : context,
         path = selection.selectAll(".domain").data([null]),
@@ -47,54 +47,67 @@ function axis(orient, scale) {
         tickExit = tick.exit(),
         tickEnter = tick.enter().append("g", ".domain").attr("class", "tick"),
         line = tick.select("line"),
-        text = tick.select("text");
+        text = tick.select("text"),
+        k = orient === top || orient === left ? -1 : 1,
+        x, y = orient === left || orient === right ? (x = "x", "y") : (x = "y", "x");
 
-    path = path.merge(path.enter().append("path").attr("class", "domain"));
+    path = path.merge(path.enter().append("path")
+        .attr("class", "domain")
+        .attr("stroke", "#000"));
+
     tick = tick.merge(tickEnter);
-    line = line.merge(tickEnter.append("line"));
-    text = text.merge(tickEnter.append("text"));
+
+    line = line.merge(tickEnter.append("line")
+        .attr("stroke", "#000")
+        .attr(x + "2", k * tickSizeInner));
+
+    text = text.merge(tickEnter.append("text")
+        .attr("fill", "#000")
+        .attr(x, k * spacing));
 
     if (context !== selection) {
       path = path.transition(context);
       tick = tick.transition(context);
-      tickExit = tickExit.transition(context).style("opacity", epsilon).attr("transform", function(d) { return transform(position, this.parentNode.__axis || position, d); });
-      tickEnter.style("opacity", epsilon).attr("transform", function(d) { return transform(this.parentNode.__axis || position, position, d); });
       line = line.transition(context);
       text = text.transition(context);
+
+      tickExit = tickExit.transition(context)
+          .attr("opacity", epsilon)
+          .attr("transform", function(d) { return transform(position, this.parentNode.__axis || position, d); });
+
+      tickEnter
+          .attr("opacity", epsilon)
+          .attr("transform", function(d) { return transform(this.parentNode.__axis || position, position, d); });
     }
 
-    tick.style("opacity", 1).attr("transform", function(d) { return transform(position, position, d); });
     tickExit.remove();
-    text.text(format);
 
-    switch (orient) {
-      case top: {
-        path.attr("d", "M" + range0 + "," + -tickSizeOuter + "V0H" + range1 + "V" + -tickSizeOuter);
-        line.attr("x2", 0).attr("y2", -tickSizeInner);
-        text.attr("x", 0).attr("y", -spacing).attr("dy", "0em").style("text-anchor", "middle");
-        break;
-      }
-      case right: {
-        path.attr("d", "M" + tickSizeOuter + "," + range0 + "H0V" + range1 + "H" + tickSizeOuter);
-        line.attr("y2", 0).attr("x2", tickSizeInner);
-        text.attr("y", 0).attr("x", spacing).attr("dy", ".32em").style("text-anchor", "start");
-        break;
-      }
-      case bottom: {
-        path.attr("d", "M" + range0 + "," + tickSizeOuter + "V0H" + range1 + "V" + tickSizeOuter);
-        line.attr("x2", 0).attr("y2", tickSizeInner);
-        text.attr("x", 0).attr("y", spacing).attr("dy", ".71em").style("text-anchor", "middle");
-        break;
-      }
-      case left: {
-        path.attr("d", "M" + -tickSizeOuter + "," + range0 + "H0V" + range1 + "H" + -tickSizeOuter);
-        line.attr("y2", 0).attr("x2", -tickSizeInner);
-        text.attr("y", 0).attr("x", -spacing).attr("dy", ".32em").style("text-anchor", "end");
-        break;
-      }
-    }
+    path
+        .attr("d", orient === left || orient == right
+            ? "M" + k * tickSizeOuter + "," + range0 + "H0.5V" + range1 + "H" + k * tickSizeOuter
+            : "M" + range0 + "," + k * tickSizeOuter + "V0.5H" + range1 + "V" + k * tickSizeOuter)
 
-    selection.each(function() { this.__axis = position; });
+    tick
+        .attr("opacity", 1)
+        .attr("transform", function(d) { return transform(position, position, d); });
+
+    line
+        .attr(x + "2", k * tickSizeInner)
+        .attr(y + "1", 0.5)
+        .attr(y + "2", 0.5);
+
+    text
+        .attr(x, k * spacing)
+        .attr(y, 0.5)
+        .attr("dy", orient === top ? "0em" : orient === bottom ? ".71em" : ".32em")
+        .text(format);
+
+    selection
+        .attr("fill", "none")
+        .attr("font-size", 10)
+        .attr("font-family", "sans-serif")
+        .attr("text-anchor", orient === right ? "start" : orient === left ? "end" : "middle")
+        .each(function() { this.__axis = position; });
   }
 
   axis.scale = function(_) {
