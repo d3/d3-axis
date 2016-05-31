@@ -24,6 +24,10 @@ function center(scale) {
   };
 }
 
+function entering() {
+  return !this.__axis;
+}
+
 function axis(orient, scale) {
   var tickArguments = [],
       tickValues = null,
@@ -102,8 +106,7 @@ function axis(orient, scale) {
         .attr(x, k * spacing)
         .text(format);
 
-    selection
-      .filter(function() { return !this.__axis; })
+    selection.filter(entering)
         .attr("fill", "none")
         .attr("font-size", 10)
         .attr("font-family", "sans-serif")
