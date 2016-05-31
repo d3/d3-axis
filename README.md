@@ -44,7 +44,7 @@ d3.select("body").append("svg")
     .call(axis);
 ```
 
-Once created, the orientation of an axis is fixed. To change the orientation of an axis, remove the old axis and create a new axis.
+Once created, the orientation of an axis is fixed. To change the orientation, remove the old axis and create a new axis.
 
 <a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>(<i>scale</i>)
 
