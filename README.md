@@ -44,6 +44,8 @@ d3.select("body").append("svg")
     .call(axis);
 ```
 
+Once created, the orientation of an axis is fixed. To change the orientation of an axis, remove the old axis and create a new axis.
+
 <a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>(<i>scale</i>)
 
 Constructs a new top-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn above the horizontal domain path.
