@@ -8,7 +8,7 @@
     "scale",
     "visualization"
   ],
-  "homepage": "https://github.com/d3/d3-axis",
+  "homepage": "https://d3js.org/d3-axis/",
   "license": "BSD-3-Clause",
   "author": {
     "name": "Mike Bostock",
@@ -21,20 +21,16 @@
     "url": "https://github.com/d3/d3-axis.git"
   },
   "scripts": {
-    "pretest": "rm -rf build && mkdir build && json2module package.json > build/package.js && rollup -f umd -g d3-scale:d3_scale,d3-selection:d3_selection -n d3_axis -o build/d3-axis.js -- index.js",
+    "pretest": "rm -rf build && mkdir build && rollup --banner \"$(preamble)\" -f umd -n d3 -o build/d3-axis.js -- index.js",
     "test": "tape 'test/**/*-test.js' && eslint index.js src",
-    "prepublish": "npm run test && uglifyjs build/d3-axis.js -c -m -o build/d3-axis.min.js",
-    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && cp build/d3-axis.js ../d3.github.com/d3-axis.v0.3.js && cp build/d3-axis.min.js ../d3.github.com/d3-axis.v0.3.min.js && cd ../d3.github.com && git add d3-axis.v0.3.js d3-axis.v0.3.min.js && git commit -m \"d3-axis ${VERSION}\" && git push && cd - && zip -j build/d3-axis.zip -- LICENSE README.md build/d3-axis.js build/d3-axis.min.js"
-  },
-  "dependencies": {
-    "d3-scale": "~0.7.0",
-    "d3-selection": "~0.7.0",
-    "d3-transition": "~0.2.0"
+    "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-axis.js -c -m -o build/d3-axis.min.js",
+    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && cp build/d3-axis.js ../d3.github.com/d3-axis.v0.4.js && cp build/d3-axis.min.js ../d3.github.com/d3-axis.v0.4.min.js && cd ../d3.github.com && git add d3-axis.v0.4.js d3-axis.v0.4.min.js && git commit -m \"d3-axis ${VERSION}\" && git push && cd - && zip -j build/d3-axis.zip -- LICENSE README.md build/d3-axis.js build/d3-axis.min.js"
   },
   "devDependencies": {
+    "d3-scale": "~0.9.0",
     "eslint": "2",
-    "json2module": "0.0",
-    "rollup": "0.26",
+    "package-preamble": "0.0",
+    "rollup": "0.27",
     "tape": "4",
     "uglify-js": "2"
   }

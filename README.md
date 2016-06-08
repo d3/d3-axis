@@ -4,26 +4,13 @@ The axis component renders human-readable reference marks for [scales](https://g
 
 ## Installing
 
-If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](https://github.com/d3/d3-axis/releases/latest). You can also load directly from [d3js.org](https://d3js.org), either as a [standalone library](https://d3js.org/d3-axis.v0.3.min.js) or as part of [D3 4.0](https://github.com/d3/d3). (Some dependencies are optional.) AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3_axis` global is exported:
+If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](https://github.com/d3/d3-axis/releases/latest). You can also load directly from [d3js.org](https://d3js.org), either as a [standalone library](https://d3js.org/d3-axis.v0.4.min.js) or as part of [D3 4.0](https://github.com/d3/d3). (To be useful, you’ll also want to use [d3-scale](https://github.com/d3/d3-scale) and [d3-selection](https://github.com/d3/d3-selection), but these are soft dependencies.) AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3_axis` global is exported:
 
 ```html
-<script src="https://d3js.org/d3-array.v0.7.min.js"></script>
-<script src="https://d3js.org/d3-collection.v0.2.min.js"></script>
-<script src="https://d3js.org/d3-color.v0.4.min.js"></script>
-<script src="https://d3js.org/d3-format.v0.5.min.js"></script>
-<script src="https://d3js.org/d3-interpolate.v0.8.min.js"></script>
-<script src="https://d3js.org/d3-time.v0.2.min.js"></script>
-<script src="https://d3js.org/d3-time-format.v0.3.min.js"></script>
-<script src="https://d3js.org/d3-scale.v0.7.min.js"></script>
-<script src="https://d3js.org/d3-selection.v0.7.min.js"></script>
-<script src="https://d3js.org/d3-dispatch.v0.4.min.js"></script>
-<script src="https://d3js.org/d3-ease.v0.7.min.js"></script>
-<script src="https://d3js.org/d3-timer.v0.4.min.js"></script>
-<script src="https://d3js.org/d3-transition.v0.2.min.js"></script>
-<script src="https://d3js.org/d3-axis.v0.3.min.js"></script>
+<script src="https://d3js.org/d3-axis.v0.4.min.js"></script>
 <script>
 
-var axis = d3_axis.axisLeft(scale);
+var axis = d3.axisLeft(scale);
 
 </script>
 ```
