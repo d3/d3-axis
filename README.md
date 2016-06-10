@@ -33,6 +33,58 @@ d3.select("body").append("svg")
 
 Once created, the orientation of an axis is fixed. To change the orientation, remove the old axis and create a new axis.
 
+The elements created by the axis are considered part of its public API. You can apply external stylesheets or modify the generated axis elements to customize the axis appearance. An axis consists of a [path element](https://www.w3.org/TR/SVG/paths.html#PathElement) of class “domain” representing the extent of the scale’s domain, followed by transformed [g elements](https://www.w3.org/TR/SVG/struct.html#Groups) of class “tick” representing each of the scale’s ticks. Each tick has a [line element](https://www.w3.org/TR/SVG/shapes.html#LineElement) to draw the tick line, and a [text element](https://www.w3.org/TR/SVG/text.html#TextElement) for the tick label. For example, here is a typical bottom-oriented axis:
+
+```html
+<g class="axis" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle">
+  <path class="domain" stroke="#000" d="M0.5,6V0.5H880.5V6"></path>
+  <g class="tick" opacity="1" transform="translate(0,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.0</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(88,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.1</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(176,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.2</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(264,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.3</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(352,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.4</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(440,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.5</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(528,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.6</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(616,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.7</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(704,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.8</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(792,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">0.9</text>
+  </g>
+  <g class="tick" opacity="1" transform="translate(880,0)">
+    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
+    <text fill="#000" y="9" x="0.5" dy=".71em">1.0</text>
+  </g>
+</g>
+```
+
 <a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>(<i>scale</i>)
 
 Constructs a new top-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn above the horizontal domain path.

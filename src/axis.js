@@ -49,13 +49,13 @@ function axis(orient, scale) {
         path = selection.selectAll(".domain").data([null]),
         tick = selection.selectAll(".tick").data(values, scale).order(),
         tickExit = tick.exit(),
-        tickEnter = tick.enter().append("g", ".domain").attr("class", "tick"),
+        tickEnter = tick.enter().append("g").attr("class", "tick"),
         line = tick.select("line"),
         text = tick.select("text"),
         k = orient === top || orient === left ? -1 : 1,
         x, y = orient === left || orient === right ? (x = "x", "y") : (x = "y", "x");
 
-    path = path.merge(path.enter().append("path")
+    path = path.merge(path.enter().insert("path", ".tick")
         .attr("class", "domain")
         .attr("stroke", "#000"));
 
