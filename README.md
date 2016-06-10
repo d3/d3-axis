@@ -36,7 +36,7 @@ Once created, the orientation of an axis is fixed. To change the orientation, re
 The elements created by the axis are considered part of its public API. You can apply external stylesheets or modify the generated axis elements to customize the axis appearance. An axis consists of a [path element](https://www.w3.org/TR/SVG/paths.html#PathElement) of class “domain” representing the extent of the scale’s domain, followed by transformed [g elements](https://www.w3.org/TR/SVG/struct.html#Groups) of class “tick” representing each of the scale’s ticks. Each tick has a [line element](https://www.w3.org/TR/SVG/shapes.html#LineElement) to draw the tick line, and a [text element](https://www.w3.org/TR/SVG/text.html#TextElement) for the tick label. For example, here is a typical bottom-oriented axis:
 
 ```html
-<g class="axis" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle">
+<g fill="none" font-size="10" font-family="sans-serif" text-anchor="middle">
   <path class="domain" stroke="#000" d="M0.5,6V0.5H880.5V6"></path>
   <g class="tick" opacity="1" transform="translate(0,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
