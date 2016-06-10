@@ -42,41 +42,21 @@ The elements created by the axis are considered part of its public API. You can 
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
     <text fill="#000" y="9" x="0.5" dy=".71em">0.0</text>
   </g>
-  <g class="tick" opacity="1" transform="translate(88,0)">
-    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.1</text>
-  </g>
   <g class="tick" opacity="1" transform="translate(176,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
     <text fill="#000" y="9" x="0.5" dy=".71em">0.2</text>
-  </g>
-  <g class="tick" opacity="1" transform="translate(264,0)">
-    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.3</text>
   </g>
   <g class="tick" opacity="1" transform="translate(352,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
     <text fill="#000" y="9" x="0.5" dy=".71em">0.4</text>
   </g>
-  <g class="tick" opacity="1" transform="translate(440,0)">
-    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.5</text>
-  </g>
   <g class="tick" opacity="1" transform="translate(528,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
     <text fill="#000" y="9" x="0.5" dy=".71em">0.6</text>
   </g>
-  <g class="tick" opacity="1" transform="translate(616,0)">
-    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.7</text>
-  </g>
   <g class="tick" opacity="1" transform="translate(704,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
     <text fill="#000" y="9" x="0.5" dy=".71em">0.8</text>
-  </g>
-  <g class="tick" opacity="1" transform="translate(792,0)">
-    <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.9</text>
   </g>
   <g class="tick" opacity="1" transform="translate(880,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
