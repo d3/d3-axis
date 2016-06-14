@@ -4,6 +4,7 @@
   "description": "Displays automatic reference lines for scales.",
   "keywords": [
     "d3",
+    "d3-module",
     "axis",
     "scale",
     "visualization"
