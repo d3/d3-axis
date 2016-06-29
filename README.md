@@ -90,8 +90,23 @@ Render the axis to the given *context*, which may be either a [selection](https:
 If *scale* is specified, sets the scale and returns the axis. If *scale* is not specified, returns the current scale.
 
 <a name="axis_ticks" href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>(<i>arguments…</i>)
+<br><a href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>(<i>count</i>[, <i>specifier</i>])
 
-A convenience function for setting the [tick arguments](#axis_tickArguments). For example, this:
+Sets the *arguments* that will be passed to [*scale*.ticks](https://github.com/d3/d3-scale#continuous_ticks) and [*scale*.tickFormat](https://github.com/d3/d3-scale#continuous_tickFormat) when the axis is [rendered](#_axis), and returns the axis generator. The meaning of the *arguments* depends on the [axis’ scale](#axis_scale) type: most commonly, the arguments are a suggested *count* for the number of ticks (or a [time *interval*](https://github.com/d3/d3-time) for time scales), and an optional format *specifier* to customize how the tick values are formatted. This method is a convenient alternative to setting the tick values explicitly via [*axis*.tickValues](#axis_tickValues), and setting the tick format explicitly via [*axis*.tickFormat](#axis_tickFormat).
+
+For example, to generate twenty ticks with SI-prefix formatting on a linear scale, say:
+
+```js
+axis.ticks(20, "s");
+```
+
+To generate ticks every fifteen minutes with a time scale, say:
+
+```js
+axis.ticks(d3.timeMinute.every(15));
+```
+
+This method is also a convenience function for [*axis*.tickArguments](#axis_tickArguments). For example, this:
 
 ```js
 axis.ticks(10);
@@ -105,9 +120,19 @@ axis.tickArguments([10]);
 
 <a name="axis_tickArguments" href="#axis_tickArguments">#</a> <i>axis</i>.<b>tickArguments</b>([<i>arguments</i>])
 
-If *arguments* are specified, stores the specified arguments for subsequent use in generating ticks and returns the axis. The arguments will later be passed to [*scale*.ticks](https://github.com/d3/d3-scale#continuous_ticks) to generate tick values (unless tick values are specified explicitly via [*axis*.tickValues](#axis_tickValues)). These arguments are also passed to the scale’s [tickFormat method](https://github.com/d3/d3-scale#continuous_tickFormat) to generate a tick format (unless a tick format is specified explicitly via [*axis*.tickFormat](#axis_tickFormat)). If no arguments are specified, returns the current tick arguments, which defaults to the empty array.
+If *arguments* are specified, sets the *arguments* that will be passed to [*scale*.ticks](https://github.com/d3/d3-scale#continuous_ticks) and [*scale*.tickFormat](https://github.com/d3/d3-scale#continuous_tickFormat) when the axis is [rendered](#_axis), and returns the axis generator. The meaning of the *arguments* depends on the [axis’ scale](#axis_scale) type: most commonly, the arguments are a suggested *count* for the number of ticks (or a [time *interval*](https://github.com/d3/d3-time) for time scales), and an optional format *specifier* to customize how the tick values are formatted. This method is a convenient alternative to setting the tick values explicitly via [*axis*.tickValues](#axis_tickValues), and setting the tick format explicitly via [*axis*.tickFormat](#axis_tickFormat). If *arguments* is not specified, returns the current tick arguments, which defaults to the empty array.
 
-Suitable arguments depends on the associated scale: for a [quantitative scale](https://github.com/d3/d3-scale#continuous-scales), you might specify a suggested tick count such as `[20]` or a tick count and a tick format specifier such as `[10, "$,.2f"]`; for a [time scale](https://github.com/d3/d3-scale#time-scales), a [time interval](https://github.com/d3/d3-time#intervals) such as `[d3.timeMinute, 15]` might be appropriate.
+For example, to generate twenty ticks with SI-prefix formatting on a linear scale, say:
+
+```js
+axis.tickArguments([20, "s"]);
+```
+
+To generate ticks every fifteen minutes with a time scale, say:
+
+```js
+axis.tickArguments([d3.timeMinute.every(15)]);
+```
 
 <a name="axis_tickValues" href="#axis_tickValues">#</a> <i>axis</i>.<b>tickValues</b>([<i>values</i>])
 
