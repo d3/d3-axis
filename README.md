@@ -90,7 +90,8 @@ Render the axis to the given *context*, which may be either a [selection](https:
 If *scale* is specified, sets the scale and returns the axis. If *scale* is not specified, returns the current scale.
 
 <a name="axis_ticks" href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>(<i>arguments…</i>)
-<br><a href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>(<i>count</i>[, <i>specifier</i>])
+<br><a href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>([<i>count</i>[, <i>specifier</i>]])
+<br><a href="#axis_ticks">#</a> <i>axis</i>.<b>ticks</b>([<i>interval</i>[, <i>specifier</i>]])
 
 Sets the *arguments* that will be passed to [*scale*.ticks](https://github.com/d3/d3-scale#continuous_ticks) and [*scale*.tickFormat](https://github.com/d3/d3-scale#continuous_tickFormat) when the axis is [rendered](#_axis), and returns the axis generator. The meaning of the *arguments* depends on the [axis’ scale](#axis_scale) type: most commonly, the arguments are a suggested *count* for the number of ticks (or a [time *interval*](https://github.com/d3/d3-time) for time scales), and an optional format *specifier* to customize how the tick values are formatted. This method is a convenient alternative to setting the tick values explicitly via [*axis*.tickValues](#axis_tickValues), and setting the tick format explicitly via [*axis*.tickFormat](#axis_tickFormat).
 
