@@ -40,27 +40,27 @@ The elements created by the axis are considered part of its public API. You can 
   <path class="domain" stroke="#000" d="M0.5,6V0.5H880.5V6"></path>
   <g class="tick" opacity="1" transform="translate(0,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.0</text>
+    <text fill="#000" y="9" x="0.5" dy="0.71em">0.0</text>
   </g>
   <g class="tick" opacity="1" transform="translate(176,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.2</text>
+    <text fill="#000" y="9" x="0.5" dy="0.71em">0.2</text>
   </g>
   <g class="tick" opacity="1" transform="translate(352,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.4</text>
+    <text fill="#000" y="9" x="0.5" dy="0.71em">0.4</text>
   </g>
   <g class="tick" opacity="1" transform="translate(528,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.6</text>
+    <text fill="#000" y="9" x="0.5" dy="0.71em">0.6</text>
   </g>
   <g class="tick" opacity="1" transform="translate(704,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">0.8</text>
+    <text fill="#000" y="9" x="0.5" dy="0.71em">0.8</text>
   </g>
   <g class="tick" opacity="1" transform="translate(880,0)">
     <line stroke="#000" y2="6" x1="0.5" x2="0.5"></line>
-    <text fill="#000" y="9" x="0.5" dy=".71em">1.0</text>
+    <text fill="#000" y="9" x="0.5" dy="0.71em">1.0</text>
   </g>
 </g>
 ```

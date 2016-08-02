@@ -72,7 +72,7 @@ function axis(orient, scale) {
         .attr("fill", "#000")
         .attr(x, k * spacing)
         .attr(y, 0.5)
-        .attr("dy", orient === top ? "0em" : orient === bottom ? ".71em" : ".32em"));
+        .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
 
     if (context !== selection) {
       path = path.transition(context);
