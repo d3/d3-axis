@@ -18,9 +18,10 @@ function translateY(scale0, scale1, d) {
 }
 
 function center(scale) {
-  var width = scale.bandwidth() / 2;
+  var offset = scale.bandwidth() / 2;
+  if (scale.round()) offset = Math.round(offset);
   return function(d) {
-    return scale(d) + width;
+    return scale(d) + offset;
   };
 }
 
