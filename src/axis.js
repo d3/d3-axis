@@ -116,6 +116,16 @@ function axis(orient, scale) {
     selection
         .each(function() { this.__axis = position; });
   }
+  
+  axis.orient = function() {
+      switch (orient) {
+          case top: return 'top';
+          case bottom: return 'bottom';
+          case left: return 'left';
+          case right: return 'right';
+          default:
+      }
+  }
 
   axis.scale = function(_) {
     return arguments.length ? (scale = _, axis) : scale;
