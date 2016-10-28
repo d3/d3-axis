@@ -67,17 +67,25 @@ The elements created by the axis are considered part of its public API. You can 
 
 <a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>(<i>scale</i>) [<>](https://github.com/d3/d3-axis/blob/master/src/axis.js#L159 "Source")
 
+[![image](https://cloud.githubusercontent.com/assets/874234/19804915/f99372b6-9d19-11e6-8745-7f6fdc5582d1.png)](https://bl.ocks.org/githubjeka/ed40ce6bc1591b306977ba5ba27d06fd)
+
 Constructs a new top-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn above the horizontal domain path.
 
 <a name="axisRight" href="#axisRight">#</a> d3.<b>axisRight</b>(<i>scale</i>) [<>](https://github.com/d3/d3-axis/blob/master/src/axis.js#L163 "Source")
+
+[![image](https://cloud.githubusercontent.com/assets/874234/19804946/2a64e62c-9d1a-11e6-90e4-2658e4342aea.png)](https://bl.ocks.org/githubjeka/ed40ce6bc1591b306977ba5ba27d06fd)
 
 Constructs a new right-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the right of the vertical domain path.
 
 <a name="axisBottom" href="#axisBottom">#</a> d3.<b>axisBottom</b>(<i>scale</i>) [<>](https://github.com/d3/d3-axis/blob/master/src/axis.js#L167 "Source")
 
+[![image](https://cloud.githubusercontent.com/assets/874234/19804956/382766a4-9d1a-11e6-8732-07fe4de835f9.png)](https://bl.ocks.org/githubjeka/ed40ce6bc1591b306977ba5ba27d06fd)
+
 Constructs a new bottom-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn below the horizontal domain path.
 
 <a name="axisLeft" href="#axisLeft">#</a> d3.<b>axisLeft</b>(<i>scale</i>) [<>](https://github.com/d3/d3-axis/blob/master/src/axis.js#L171 "Source")
+
+[![image](https://cloud.githubusercontent.com/assets/874234/19804970/4e68ed0c-9d1a-11e6-8e06-d5964e340cbf.png)](https://bl.ocks.org/githubjeka/ed40ce6bc1591b306977ba5ba27d06fd)
 
 Constructs a new left-oriented axis generator for the given [scale](https://github.com/d3/d3-scale), with empty [tick arguments](#axis_ticks), a [tick size](#axis_tickSize) of 6 and [padding](#axis_tickPadding) of 3. In this orientation, ticks are drawn to the left of the vertical domain path.
 
@@ -134,6 +142,8 @@ To generate ticks every fifteen minutes with a time scale, say:
 ```js
 axis.tickArguments([d3.timeMinute.every(15)]);
 ```
+
+[![image](https://cloud.githubusercontent.com/assets/874234/19805042/b1ba229a-9d1a-11e6-879e-397dc49355ab.png)](https://bl.ocks.org/githubjeka/ed40ce6bc1591b306977ba5ba27d06fd)
 
 This method is an alternative to setting the tick values explicitly via [*axis*.tickValues](#axis_tickValues), and setting the tick format explicitly via [*axis*.tickFormat](#axis_tickFormat). See also [*axis*.ticks](#axis_ticks).
 
