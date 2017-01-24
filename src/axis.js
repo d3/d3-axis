@@ -113,8 +113,8 @@ function axis(orient, scale) {
         .attr("font-family", "sans-serif")
         .attr("text-anchor", orient === right ? "start" : orient === left ? "end" : "middle");
 
-    selection
-        .each(function() { this.__axis = position; });
+    context
+        .on('end', function() { this.__axis = position; });
   }
 
   axis.scale = function(_) {
