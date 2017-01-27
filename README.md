@@ -23,7 +23,6 @@ Regardless of orientation, axes are always rendered at the origin. To change the
 
 ```js
 d3.select("body").append("svg")
-    .attr("class", "axis")
     .attr("width", 1440)
     .attr("height", 30)
   .append("g")
