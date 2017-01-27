@@ -31,8 +31,6 @@ d3.select("body").append("svg")
     .call(axis);
 ```
 
-Once created, the orientation of an axis is fixed. To change the orientation, remove the old axis and create a new axis.
-
 The elements created by the axis are considered part of its public API. You can apply external stylesheets or modify the generated axis elements to [customize the axis appearance](https://bl.ocks.org/mbostock/3371592).
 
 [<img alt="Custom Axis" src="https://raw.githubusercontent.com/d3/d3-axis/master/img/custom.png" width="420" height="219">](http://bl.ocks.org/mbostock/3371592)
@@ -68,6 +66,8 @@ An axis consists of a [path element](https://www.w3.org/TR/SVG/paths.html#PathEl
   </g>
 </g>
 ```
+
+The orientation of an axis is fixed; to change the orientation, remove the old axis and create a new axis.
 
 <a name="axisTop" href="#axisTop">#</a> d3.<b>axisTop</b>(<i>scale</i>) [<>](https://github.com/d3/d3-axis/blob/master/src/axis.js#L159 "Source")
 
