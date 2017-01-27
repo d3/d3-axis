@@ -35,13 +35,13 @@ function axis(orient, scale) {
       tickSizeOuter = 6,
       tickPadding = 3,
       k = orient === top || orient === left ? -1 : 1,
-      x, y = orient === left || orient === right ? (x = "x", "y") : (x = "y", "x");
+      x, y = orient === left || orient === right ? (x = "x", "y") : (x = "y", "x"),
+      transform = orient === top || orient === bottom ? translateX : translateY;
 
   function axis(context) {
     var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
         format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity) : tickFormat,
         spacing = Math.max(tickSizeInner, 0) + tickPadding,
-        transform = orient === top || orient === bottom ? translateX : translateY,
         range = scale.range(),
         range0 = range[0] + 0.5,
         range1 = range[range.length - 1] + 0.5,
