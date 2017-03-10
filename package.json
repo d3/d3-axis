@@ -1,6 +1,6 @@
 {
   "name": "d3-axis",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Displays automatic reference lines for scales.",
   "keywords": [
     "d3",
