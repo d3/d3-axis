@@ -91,8 +91,8 @@ function axis(orient, scale) {
 
     path
         .attr("d", orient === left || orient == right
-            ? "M" + k * tickSizeOuter + "," + range0 + "H0.5V" + range1 + "H" + k * tickSizeOuter
-            : "M" + range0 + "," + k * tickSizeOuter + "V0.5H" + range1 + "V" + k * tickSizeOuter);
+            ? "M" + k * tickSizeOuter + "," + range0 + "H0.5V" + range1 + (tickSizeOuter ? "H" + k * tickSizeOuter : "")
+            : "M" + range0 + "," + k * tickSizeOuter + "V0.5H" + range1 + (tickSizeOuter ? "V" + k * tickSizeOuter : "");
 
     tick
         .attr("opacity", 1)
