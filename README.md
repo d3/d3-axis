@@ -98,7 +98,7 @@ If *scale* is specified, sets the [scale](https://github.com/d3/d3-scale) and re
 
 Sets the *arguments* that will be passed to [*scale*.ticks](https://github.com/d3/d3-scale/blob/master/README.md#continuous_ticks) and [*scale*.tickFormat](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) when the axis is [rendered](#_axis), and returns the axis generator. The meaning of the *arguments* depends on the [axis’ scale](#axis_scale) type: most commonly, the arguments are a suggested *count* for the number of ticks (or a [time *interval*](https://github.com/d3/d3-time) for time scales), and an optional [format *specifier*](https://github.com/d3/d3-format) to customize how the tick values are formatted.
 
-This method has no effect if the scale does not implement *scale*.ticks, as with [band](https://github.com/d3/d3-scale/blob/master/README.md#band-scales) and [point](https://github.com/d3/d3-scale/blob/master/README.md#point-scales) scales. This method is an alternative to setting the tick values explicitly via [*axis*.tickValues](#axis_tickValues), and setting the tick format explicitly via [*axis*.tickFormat](#axis_tickFormat).
+This method has no effect if the scale does not implement *scale*.ticks, as with [band](https://github.com/d3/d3-scale/blob/master/README.md#band-scales) and [point](https://github.com/d3/d3-scale/blob/master/README.md#point-scales) scales. To set the tick values explicitly, use [*axis*.tickValues](#axis_tickValues). To set the tick format explicitly, use [*axis*.tickFormat](#axis_tickFormat).
 
 For example, to generate twenty ticks with SI-prefix formatting on a linear scale, say:
 
@@ -126,9 +126,11 @@ axis.tickArguments([10]);
 
 <a name="axis_tickArguments" href="#axis_tickArguments">#</a> <i>axis</i>.<b>tickArguments</b>([<i>arguments</i>]) [<>](https://github.com/d3/d3-axis/blob/master/src/axis.js#L128 "Source")
 
-If *arguments* are specified, sets the *arguments* that will be passed to [*scale*.ticks](https://github.com/d3/d3-scale/blob/master/README.md#continuous_ticks) and [*scale*.tickFormat](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) when the axis is [rendered](#_axis), and returns the axis generator. The meaning of the *arguments* depends on the [axis’ scale](#axis_scale) type: most commonly, the arguments are a suggested *count* for the number of ticks (or a [time *interval*](https://github.com/d3/d3-time) for time scales), and an optional [format *specifier*](https://github.com/d3/d3-format) to customize how the tick values are formatted.
+If *arguments* is specified, sets the *arguments* that will be passed to [*scale*.ticks](https://github.com/d3/d3-scale/blob/master/README.md#continuous_ticks) and [*scale*.tickFormat](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) when the axis is [rendered](#_axis), and returns the axis generator. The meaning of the *arguments* depends on the [axis’ scale](#axis_scale) type: most commonly, the arguments are a suggested *count* for the number of ticks (or a [time *interval*](https://github.com/d3/d3-time) for time scales), and an optional [format *specifier*](https://github.com/d3/d3-format) to customize how the tick values are formatted.
 
-This method has no effect if the scale does not implement *scale*.ticks, as with [band](https://github.com/d3/d3-scale/blob/master/README.md#band-scales) and [point](https://github.com/d3/d3-scale/blob/master/README.md#point-scales) scales. This method is a convenient alternative to setting the tick values explicitly via [*axis*.tickValues](#axis_tickValues), and setting the tick format explicitly via [*axis*.tickFormat](#axis_tickFormat). If *arguments* is not specified, returns the current tick arguments, which defaults to the empty array.
+If *arguments* is specified, this method has no effect if the scale does not implement *scale*.ticks, as with [band](https://github.com/d3/d3-scale/blob/master/README.md#band-scales) and [point](https://github.com/d3/d3-scale/blob/master/README.md#point-scales) scales. To set the tick values explicitly, use [*axis*.tickValues](#axis_tickValues). To set the tick format explicitly, use [*axis*.tickFormat](#axis_tickFormat).
+
+If *arguments* is not specified, returns the current tick arguments, which defaults to the empty array.
 
 For example, to generate twenty ticks with SI-prefix formatting on a linear scale, say:
 
@@ -142,7 +144,7 @@ To generate ticks every fifteen minutes with a time scale, say:
 axis.tickArguments([d3.timeMinute.every(15)]);
 ```
 
-This method is an alternative to setting the tick values explicitly via [*axis*.tickValues](#axis_tickValues), and setting the tick format explicitly via [*axis*.tickFormat](#axis_tickFormat). See also [*axis*.ticks](#axis_ticks).
+See also [*axis*.ticks](#axis_ticks).
 
 <a name="axis_tickValues" href="#axis_tickValues">#</a> <i>axis</i>.<b>tickValues</b>([<i>values</i>]) [<>](https://github.com/d3/d3-axis/blob/master/src/axis.js#L132 "Source")
 
