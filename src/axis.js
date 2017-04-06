@@ -48,7 +48,7 @@ function axis(orient, scale) {
         position = (scale.bandwidth ? center : identity)(scale.copy()),
         selection = context.selection ? context.selection() : context,
         path = selection.selectAll(".domain").data([null]),
-        tick = selection.selectAll(".tick").data(values, scale).order(),
+        tick = selection.selectAll(".tick").data(values, identity).order(),
         tickExit = tick.exit(),
         tickEnter = tick.enter().append("g").attr("class", "tick"),
         line = tick.select("line"),
