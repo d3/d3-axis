@@ -7,14 +7,12 @@ var top = 1,
     left = 4,
     epsilon = 1e-6;
 
-function translateX(scale0, scale1, d) {
-  var x = scale0(d);
-  return "translate(" + (isFinite(x) ? x : scale1(d)) + ",0)";
+function translateX(x) {
+  return "translate(" + x + ",0)";
 }
 
-function translateY(scale0, scale1, d) {
-  var y = scale0(d);
-  return "translate(0," + (isFinite(y) ? y : scale1(d)) + ")";
+function translateY(y) {
+  return "translate(0," + y + ")";
 }
 
 function center(scale) {
@@ -35,13 +33,15 @@ function axis(orient, scale) {
       tickFormat = null,
       tickSizeInner = 6,
       tickSizeOuter = 6,
-      tickPadding = 3;
+      tickPadding = 3,
+      k = orient === top || orient === left ? -1 : 1,
+      x, y = orient === left || orient === right ? (x = "x", "y") : (x = "y", "x"),
+      transform = orient === top || orient === bottom ? translateX : translateY;
 
   function axis(context) {
     var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
         format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity) : tickFormat,
         spacing = Math.max(tickSizeInner, 0) + tickPadding,
-        transform = orient === top || orient === bottom ? translateX : translateY,
         range = scale.range(),
         range0 = range[0] + 0.5,
         range1 = range[range.length - 1] + 0.5,
@@ -52,9 +52,7 @@ function axis(orient, scale) {
         tickExit = tick.exit(),
         tickEnter = tick.enter().append("g").attr("class", "tick"),
         line = tick.select("line"),
-        text = tick.select("text"),
-        k = orient === top || orient === left ? -1 : 1,
-        x, y = orient === left || orient === right ? (x = "x", "y") : (x = "y", "x");
+        text = tick.select("text");
 
     path = path.merge(path.enter().insert("path", ".tick")
         .attr("class", "domain")
@@ -82,11 +80,11 @@ function axis(orient, scale) {
 
       tickExit = tickExit.transition(context)
           .attr("opacity", epsilon)
-          .attr("transform", function(d) { return transform(position, this.parentNode.__axis || position, d); });
+          .attr("transform", function(d) { return isFinite(d = position(d)) ? transform(d) : this.getAttribute("transform"); });
 
       tickEnter
           .attr("opacity", epsilon)
-          .attr("transform", function(d) { return transform(this.parentNode.__axis || position, position, d); });
+          .attr("transform", function(d) { var p = this.parentNode.__axis; return transform(p && isFinite(p = p(d)) ? p : position(d)); });
     }
 
     tickExit.remove();
@@ -98,7 +96,7 @@ function axis(orient, scale) {
 
     tick
         .attr("opacity", 1)
-        .attr("transform", function(d) { return transform(position, position, d); });
+        .attr("transform", function(d) { return transform(position(d)); });
 
     line
         .attr(x + "2", k * tickSizeInner);
