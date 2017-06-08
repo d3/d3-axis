@@ -30,9 +30,11 @@
   },
   "devDependencies": {
     "d3-scale": "1",
+    "d3-selection": "^1.1.0",
     "eslint": "3",
-    "package-preamble": "0.0",
-    "rollup": "0.41",
+    "jsdom": "11",
+    "package-preamble": "0.1",
+    "rollup": "0.42",
     "tape": "4",
     "uglify-js": "^2.8.11"
   }
