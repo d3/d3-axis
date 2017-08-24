@@ -23,19 +23,12 @@
     "url": "https://github.com/d3/d3-axis.git"
   },
   "scripts": {
-    "pretest": "rm -rf build && mkdir build && rollup --banner \"$(preamble)\" -f umd -n d3 -o build/d3-axis.js -- index.js",
-    "test": "tape 'test/**/*-test.js' && eslint index.js src",
-    "prepublish": "npm run test && uglifyjs --preamble \"$(preamble)\" build/d3-axis.js -c -m -o build/d3-axis.min.js",
-    "postpublish": "git push && git push --tags && cd ../d3.github.com && git pull && cp ../d3-axis/build/d3-axis.js d3-axis.v1.js && cp ../d3-axis/build/d3-axis.min.js d3-axis.v1.min.js && git add d3-axis.v1.js d3-axis.v1.min.js && git commit -m \"d3-axis ${npm_package_version}\" && git push && cd - && zip -j build/d3-axis.zip -- LICENSE README.md build/d3-axis.js build/d3-axis.min.js"
+    "test": "d3fc-scripts test",
+    "bundle": "d3fc-scripts bundle"
   },
   "devDependencies": {
     "d3-scale": "1",
     "d3-selection": "^1.1.0",
-    "eslint": "3",
-    "jsdom": "11",
-    "package-preamble": "0.1",
-    "rollup": "0.42",
-    "tape": "4",
-    "uglify-js": "^2.8.11"
+    "d3fc-scripts": "git://github.com/ColinEberhardt/d3fc-scripts.git#d3-module"
   }
 }
