@@ -11,7 +11,8 @@ export default [
       file: "build/d3-axis.js",
       format: "umd",
       name: "d3",
-      extend: true
+      extend: true,
+      banner: copyright
     },
     plugins: [
       node()
