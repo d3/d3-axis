@@ -14,8 +14,7 @@ export default [
       extend: true
     },
     plugins: [
-      node(),
-      terser({output: {preamble: copyright}})
+      node()
     ]
   },
   {
