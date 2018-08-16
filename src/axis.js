@@ -62,16 +62,16 @@ function axis(orient, scale) {
 
     path = path.merge(path.enter().insert("path", ".tick")
         .attr("class", "domain")
-        .attr("stroke", "#000"));
+        .attr("stroke", "currentColor"));
 
     tick = tick.merge(tickEnter);
 
     line = line.merge(tickEnter.append("line")
-        .attr("stroke", "#000")
+        .attr("stroke", "currentColor")
         .attr(x + "2", k * tickSizeInner));
 
     text = text.merge(tickEnter.append("text")
-        .attr("fill", "#000")
+        .attr("fill", "currentColor")
         .attr(x, k * spacing)
         .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
 
