@@ -32,7 +32,7 @@
     "d3-scale": "2",
     "d3-selection": "^1.1.0",
     "eslint": "5",
-    "jsdom": "11",
+    "jsdom": "12",
     "rollup": "0.64",
     "rollup-plugin-node-resolve": "3",
     "rollup-plugin-terser": "1",
