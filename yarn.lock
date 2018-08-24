@@ -3,14 +3,14 @@
 
 
 "@babel/code-frame@^7.0.0-beta.47":
-  version "7.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-rc.2.tgz#12b6daeb408238360744649d16c0e9fa7ab3859e"
+  version "7.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-rc.3.tgz#d77a587401f818a3168700f596e41cd6905947b2"
   dependencies:
-    "@babel/highlight" "7.0.0-rc.2"
+    "@babel/highlight" "7.0.0-rc.3"
 
-"@babel/highlight@7.0.0-rc.2":
-  version "7.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.0.0-rc.2.tgz#0af688a69e3709d9cf392e1837cda18c08d34d4f"
+"@babel/highlight@7.0.0-rc.3":
+  version "7.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.0.0-rc.3.tgz#c2ee83f8e5c0c387279a8c48e06fef2e32027004"
   dependencies:
     chalk "^2.0.0"
     esutils "^2.0.2"
@@ -274,30 +274,30 @@ cssstyle@^1.0.0:
     cssom "0.3.x"
 
 d3-array@^1.2.0:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.3.tgz#d705413d19a48fd82c570b4442170d6b9f5df794"
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
 
 d3-collection@1:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.5.tgz#dd0c198a08f6d2d5b1cb8255d7c6150fecded5b5"
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.6.tgz#5279545ae9bae249c8de71f4708e71d7b9062dc9"
 
 d3-color@1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.2.1.tgz#c600e90ed73b2a3ac79059422bd5f5ddd23ced54"
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.2.2.tgz#01ffc37603ac46357fb47d7ab02b0369d2a57766"
 
 d3-format@1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.3.0.tgz#a3ac44269a2011cdb87c7b5693040c18cddfff11"
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-1.3.1.tgz#91687becc758d8401f47ffd25849e68da1985f85"
 
 d3-interpolate@1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.3.0.tgz#cf8fd978817b3fc970bc9b416f8db85975d5990d"
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.3.1.tgz#a710ec00b8791c3d7c9c0b5eceb5808de76fb0e4"
   dependencies:
     d3-color "1"
 
 d3-scale@2:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-2.1.0.tgz#8d3fd3e2a7c9080782a523c08507c5248289eef8"
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/d3-scale/-/d3-scale-2.1.1.tgz#88928332d8138081a1fb62e096590470a9ec3c9b"
   dependencies:
     d3-array "^1.2.0"
     d3-collection "1"
@@ -307,18 +307,18 @@ d3-scale@2:
     d3-time-format "2"
 
 d3-selection@^1.1.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.3.0.tgz#d53772382d3dc4f7507bfb28bcd2d6aed2a0ad6d"
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/d3-selection/-/d3-selection-1.3.1.tgz#c2ea7e009637301d6344891a679c541f311f4925"
 
 d3-time-format@2:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.1.1.tgz#85b7cdfbc9ffca187f14d3c456ffda268081bb31"
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/d3-time-format/-/d3-time-format-2.1.3.tgz#ae06f8e0126a9d60d6364eac5b1533ae1bac826b"
   dependencies:
     d3-time "1"
 
 d3-time@1:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-1.0.8.tgz#dbd2d6007bf416fe67a76d17947b784bffea1e84"
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/d3-time/-/d3-time-1.0.9.tgz#ca7eebbcfe99c76cc837f903c7438defd28b73fe"
 
 dashdash@^1.12.0:
   version "1.14.1"
