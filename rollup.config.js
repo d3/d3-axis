@@ -1,34 +1,35 @@
-import node from "rollup-plugin-node-resolve";
 import {terser} from "rollup-plugin-terser";
 import * as meta from "./package.json";
 
-const copyright = `// ${meta.homepage} Version ${meta.version} Copyright ${(new Date).getFullYear()} ${meta.author.name}.`;
+const config = {
+  input: "index.js",
+  external: Object.keys(meta.dependencies || {}),
+  output: {
+    file: `build/${meta.name}.js`,
+    name: "d3",
+    format: "umd",
+    extend: true,
+    banner: `// ${meta.homepage} Version ${meta.version} Copyright ${(new Date).getFullYear()} ${meta.author.name}.`,
+    globals: Object.assign({}, ...Object.keys(meta.dependencies || {}).map(key => ({[key]: "d3"})))
+  },
+  plugins: []
+};
 
 export default [
+  config,
   {
-    input: "index.js",
+    ...config,
     output: {
-      file: "build/d3-axis.js",
-      format: "umd",
-      name: "d3",
-      extend: true,
-      banner: copyright
+      ...config.output,
+      file: `build/${meta.name}.min.js`
     },
     plugins: [
-      node()
-    ]
-  },
-  {
-    input: "index.js",
-    output: {
-      file: "build/d3-axis.min.js",
-      format: "umd",
-      name: "d3",
-      extend: true
-    },
-    plugins: [
-      node(),
-      terser({output: {preamble: copyright}})
+      ...config.plugins,
+      terser({
+        output: {
+          preamble: config.output.banner
+        }
+      })
     ]
   }
 ];

@@ -24,7 +24,7 @@
   },
   "scripts": {
     "pretest": "rm -rf build && mkdir build && rollup -c",
-    "test": "tape 'test/**/*-test.js' && eslint index.js src",
+    "test": "tape 'test/**/*-test.js' && eslint index.js src test",
     "prepublish": "yarn test",
     "postpublish": "git push && git push --tags && cd ../d3.github.com && git pull && cp ../d3-axis/build/d3-axis.js d3-axis.v1.js && cp ../d3-axis/build/d3-axis.min.js d3-axis.v1.min.js && git add d3-axis.v1.js d3-axis.v1.min.js && git commit -m \"d3-axis ${npm_package_version}\" && git push && cd - && zip -j build/d3-axis.zip -- LICENSE README.md build/d3-axis.js build/d3-axis.min.js"
   },
@@ -34,7 +34,6 @@
     "eslint": "5",
     "jsdom": "12",
     "rollup": "0.64",
-    "rollup-plugin-node-resolve": "3",
     "rollup-plugin-terser": "1",
     "tape": "4"
   }
