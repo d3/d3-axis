@@ -3,4 +3,4 @@ export {
   axisRight,
   axisBottom,
   axisLeft
-} from "./src/axis";
+} from "./axis";
