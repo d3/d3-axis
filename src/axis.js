@@ -37,6 +37,7 @@ function axis(orient, scale) {
   var tickArguments = [],
       tickValues = null,
       tickFormat = null,
+      tickTextTransform = null,
       tickSizeInner = 6,
       tickSizeOuter = 6,
       tickPadding = 3,
@@ -73,7 +74,8 @@ function axis(orient, scale) {
     text = text.merge(tickEnter.append("text")
         .attr("fill", "currentColor")
         .attr(x, k * spacing)
-        .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
+        .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"))
+        .style('transform', tickTextTransform);
 
     if (context !== selection) {
       path = path.transition(context);
@@ -120,6 +122,10 @@ function axis(orient, scale) {
 
   axis.scale = function(_) {
     return arguments.length ? (scale = _, axis) : scale;
+  };
+
+  axis.tickTextTransform = function(_) {
+    return arguments.length ? (tickTextTransform = _, axis) : tickTextTransform;
   };
 
   axis.ticks = function() {
