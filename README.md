@@ -124,6 +124,8 @@ Is equivalent to:
 axis.tickArguments([10]);
 ```
 
+To generate tick values directly, use [_scale_.ticks](https://github.com/d3/d3-scale/blob/master/README.md#continuous_ticks).
+
 <a name="axis_tickArguments" href="#axis_tickArguments">#</a> <i>axis</i>.<b>tickArguments</b>([<i>arguments</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
 
 If *arguments* is specified, sets the *arguments* that will be passed to [*scale*.ticks](https://github.com/d3/d3-scale/blob/master/README.md#continuous_ticks) and [*scale*.tickFormat](https://github.com/d3/d3-scale/blob/master/README.md#continuous_tickFormat) when the axis is [rendered](#_axis), and returns the axis generator. The meaning of the *arguments* depends on the [axis’ scale](#axis_scale) type: most commonly, the arguments are a suggested *count* for the number of ticks (or a [time *interval*](https://github.com/d3/d3-time) for time scales), and an optional [format *specifier*](https://github.com/d3/d3-format) to customize how the tick values are formatted.
