@@ -187,6 +187,19 @@ If *size* is specified, sets the inner tick size to the specified value and retu
 
 If *size* is specified, sets the outer tick size to the specified value and returns the axis. If *size* is not specified, returns the current outer tick size, which defaults to 6. The outer tick size controls the length of the square ends of the domain path, offset from the native position of the axis. Thus, the “outer ticks” are not actually ticks but part of the domain path, and their position is determined by the associated scale’s domain extent. Thus, outer ticks may overlap with the first or last inner tick. An outer tick size of 0 suppresses the square ends of the domain path, instead producing a straight line.
 
+<a name="axis_tickReach" href="#axis_tickReach">#</a> <i>axis</i>.<b>tickReach</b>([<i>reach</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
+
+If *reach* is specified, sets the tick reach to the specified value and returns the axis. If *reach* is not specified, returns the current inner tick reach, which defaults to 0. The tick reach controls the length of the tick lines beyond the axis’ native position, and can be set to a chart’s width to create a grid.
+
 <a name="axis_tickPadding" href="#axis_tickPadding">#</a> <i>axis</i>.<b>tickPadding</b>([<i>padding</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
 
-If *padding* is specified, sets the padding to the specified value in pixels and returns the axis. If *padding* is not specified, returns the current padding which defaults to 3 pixels.
+If *padding* is specified, sets the text padding to the specified value in pixels and returns the axis. If *padding* is not specified, returns the current padding which defaults to 3 pixels.
+
+<a name="axis_title" href="#axis_title">#</a> <i>axis</i>.<b>title</b>([<i>title</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
+
+If a *title* is specified, sets the title and returns the axis. Otherwise returns the title. If the title is not `null`, a text element will be created near the far end of the axis, with a class `title` and a text content set to the title.
+
+<a name="axis_filter" href="#axis_filter">#</a> <i>axis</i>.<b>filter</b>([<i>filter</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
+
+If a *filter* is specified, sets the filter and returns the axis. The filter is a function that returns a truthy value for all elements that must be displayed, with an argument of `domain`, `line` or `text`. Defaults to `function(type) { return true; }`.
+

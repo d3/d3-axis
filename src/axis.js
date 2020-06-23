@@ -1,4 +1,5 @@
 import {slice} from "./array.js";
+import constant from "./constant.js";
 import identity from "./identity.js";
 
 var top = 1,
@@ -37,9 +38,13 @@ function axis(orient, scale) {
       tickFormat = null,
       tickSizeInner = 6,
       tickSizeOuter = 6,
+      tickReach = 0,
       tickPadding = 3,
+      title = null,
+      filter = constant(true),
       k = orient === top || orient === left ? -1 : 1,
       x = orient === left || orient === right ? "x" : "y",
+      y = orient === left || orient === right ? "y" : "x",
       transform = orient === top || orient === bottom ? translateX : translateY;
 
   function axis(context) {
@@ -51,7 +56,7 @@ function axis(orient, scale) {
         range1 = +range[range.length - 1] + 0.5,
         position = (scale.bandwidth ? center : number)(scale.copy()),
         selection = context.selection ? context.selection() : context,
-        path = selection.selectAll(".domain").data([null]),
+        path = selection.selectAll(".domain").data(filter("domain") ? [null] : []),
         tick = selection.selectAll(".tick").data(values, scale).order(),
         tickExit = tick.exit(),
         tickEnter = tick.enter().append("g").attr("class", "tick"),
@@ -64,14 +69,23 @@ function axis(orient, scale) {
 
     tick = tick.merge(tickEnter);
 
-    line = line.merge(tickEnter.append("line")
-        .attr("stroke", "currentColor")
-        .attr(x + "2", k * tickSizeInner));
+    if (filter("line")) {
+      line = line.merge(tickEnter.append("line")
+          .attr("stroke", "currentColor")
+          .attr(x + "1", tickReach ? -k * tickReach : null)
+          .attr(x + "2", k * tickSizeInner));
+    } else {
+      line.remove();
+    }
 
-    text = text.merge(tickEnter.append("text")
-        .attr("fill", "currentColor")
-        .attr(x, k * spacing)
-        .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
+    if (filter("text")) {
+      text = text.merge(tickEnter.append("text")
+          .attr("fill", "currentColor")
+          .attr(x, k * spacing)
+          .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
+    } else {
+      text.remove();
+    }
 
     if (context !== selection) {
       path = path.transition(context);
@@ -105,6 +119,20 @@ function axis(orient, scale) {
     text
         .attr(x, k * spacing)
         .text(format);
+
+    selection.selectAll(".title")
+        .data(title === null ? [] : [title])
+        .join("text")
+        .classed("title", true)
+        .attr("text-anchor", orient === left ? "start" : "end")
+        .attr("font-size", 10)
+        .attr("font-family", "sans-serif")
+        .attr("fill", "currentColor")
+        .attr(y, range1)
+        .attr("alignment-baseline", "middle")
+        .attr("d" + x, x === "x" ? k * spacing : k * (spacing + tickPadding + 18))
+        .attr("d" + y, y === "y" ? -15 : 0)
+        .text(d => d);
 
     selection.filter(entering)
         .attr("fill", "none")
@@ -148,8 +176,20 @@ function axis(orient, scale) {
     return arguments.length ? (tickSizeOuter = +_, axis) : tickSizeOuter;
   };
 
+  axis.tickReach = function(_) {
+    return arguments.length ? (tickReach = +_, axis) : tickReach;
+  };
+
   axis.tickPadding = function(_) {
     return arguments.length ? (tickPadding = +_, axis) : tickPadding;
+  };
+
+  axis.title = function(_) {
+    return arguments.length ? (title = _, axis) : title;
+  };
+
+  axis.filter = function(_) {
+    return arguments.length ? (filter = _, axis) : filter;
   };
 
   return axis;
