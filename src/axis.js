@@ -51,13 +51,17 @@ function axis(orient, scale) {
     var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
         format = tickFormat == null ? (scale.tickFormat ? scale.tickFormat.apply(scale, tickArguments) : identity) : tickFormat,
         spacing = Math.max(tickSizeInner, 0) + tickPadding,
+        filterDomain = filter("domain"),
+        filterLine = filter("line"),
+        filterText = filter("text"),
+        filterTick = filterLine || filterText,
         range = scale.range(),
         range0 = +range[0] + 0.5,
         range1 = +range[range.length - 1] + 0.5,
         position = (scale.bandwidth ? center : number)(scale.copy()),
         selection = context.selection ? context.selection() : context,
-        path = selection.selectAll(".domain").data(filter("domain") ? [null] : []),
-        tick = selection.selectAll(".tick").data(values, scale).order(),
+        path = selection.selectAll(".domain").data(filterDomain ? [null] : []),
+        tick = selection.selectAll(".tick").data(filterTick ? values : [], scale).order(),
         tickExit = tick.exit(),
         tickEnter = tick.enter().append("g").attr("class", "tick"),
         line = tick.select("line"),
@@ -69,7 +73,7 @@ function axis(orient, scale) {
 
     tick = tick.merge(tickEnter);
 
-    if (filter("line")) {
+    if (filterLine) {
       line = line.merge(tickEnter.append("line")
           .attr("stroke", "currentColor")
           .attr(x + "1", tickReach ? -k * tickReach : null)
@@ -78,7 +82,7 @@ function axis(orient, scale) {
       line.remove();
     }
 
-    if (filter("text")) {
+    if (filterText) {
       text = text.merge(tickEnter.append("text")
           .attr("fill", "currentColor")
           .attr(x, k * spacing)
