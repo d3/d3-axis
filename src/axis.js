@@ -16,9 +16,7 @@ function translateY(y) {
 }
 
 function number(scale) {
-  return function(d) {
-    return +scale(d);
-  };
+  return d => +scale(d);
 }
 
 function center(scale) {
