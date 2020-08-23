@@ -1,9 +1,6 @@
 {
   "name": "d3-axis",
   "version": "2.0.0-rc.1",
-  "publishConfig": {
-    "tag": "next"
-  },
   "description": "Displays automatic reference lines for scales.",
   "keywords": [
     "d3",
@@ -39,7 +36,7 @@
   "sideEffects": false,
   "devDependencies": {
     "d3-scale": "2 - 3",
-    "d3-selection": ">=2.0.0-rc.3",
+    "d3-selection": "1 - 2",
     "eslint": "6",
     "jsdom": "15",
     "rollup": "1",
