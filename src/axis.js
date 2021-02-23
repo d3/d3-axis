@@ -38,7 +38,7 @@ function axis(orient, scale) {
       tickSizeInner = 6,
       tickSizeOuter = 6,
       tickPadding = 3,
-      offset = typeof window !== "undefined" && window.devicePixelRatio >= 2 ? 0 : 0.5,
+      offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5,
       k = orient === top || orient === left ? -1 : 1,
       x = orient === left || orient === right ? "x" : "y",
       transform = orient === top || orient === bottom ? translateX : translateY;
