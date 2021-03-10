@@ -192,3 +192,7 @@ If *size* is specified, sets the outer tick size to the specified value and retu
 <a name="axis_tickPadding" href="#axis_tickPadding">#</a> <i>axis</i>.<b>tickPadding</b>([<i>padding</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
 
 If *padding* is specified, sets the padding to the specified value in pixels and returns the axis. If *padding* is not specified, returns the current padding which defaults to 3 pixels.
+
+<a name="axis_offset" href="#axis_offset">#</a> <i>axis</i>.<b>offset</b>([<i>offset</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
+
+If *offset* is specified, sets the offset to the specified value in pixels and returns the axis. If *offset* is not specified, returns the current offset which defaults to 0 on devices with a [devicePixelRatio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) greater than 1, and 0.5px otherwise. This default offset ensures crisp edges on low-resolution devices.
