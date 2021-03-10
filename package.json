@@ -37,10 +37,10 @@
   "devDependencies": {
     "d3-scale": "2 - 3",
     "d3-selection": "1 - 2",
-    "eslint": "6",
-    "jsdom": "15",
-    "rollup": "1",
-    "rollup-plugin-terser": "5",
+    "eslint": "7",
+    "jsdom": "16",
+    "rollup": "2",
+    "rollup-plugin-terser": "7",
     "tape": "4"
   }
 }
