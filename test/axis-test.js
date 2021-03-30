@@ -61,3 +61,8 @@ it("axis.tickValues() makes a defensive copy of the tick values", () => {
   v.push(4);
   assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
+
+it("axis.tickValues(values) accepts an iterable", () => {
+  const a = axisLeft(scaleLinear()).tickValues(new Set([1, 2, 3]));
+  assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
+});

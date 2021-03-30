@@ -128,7 +128,7 @@ function axis(orient, scale) {
   };
 
   axis.tickValues = function(_) {
-    return arguments.length ? (tickValues = _ == null ? null : slice.call(_), axis) : tickValues && tickValues.slice();
+    return arguments.length ? (tickValues = _ == null ? null : Array.from(_), axis) : tickValues && tickValues.slice();
   };
 
   axis.tickFormat = function(_) {
