@@ -1,93 +1,85 @@
-var fs = require("fs"),
-    path = require("path"),
-    tape = require("tape"),
-    jsdom = require("jsdom"),
-    d3 = Object.assign({}, require("d3-scale"), require("d3-selection"), require("../"));
+import assert from "assert";
+import * as d3 from "../src/index.js";
+import {readFileSync} from "fs";
+import path from "path";
+import jsdom from "jsdom";
+import {select} from "d3-selection";
+import {scaleLinear} from "d3-scale";
 
-tape("axisLeft(scale) has the expected defaults", function(test) {
-  var s = d3.scaleLinear(),
+it("axisLeft(scale) has the expected defaults", () => {
+  const s = scaleLinear(),
       a = d3.axisLeft(s);
-  test.equal(a.scale(), s);
-  test.deepEqual(a.tickArguments(), []);
-  test.equal(a.tickValues(), null);
-  test.equal(a.tickFormat(), null);
-  test.equal(a.tickSize(), 6);
-  test.equal(a.tickSizeInner(), 6);
-  test.equal(a.tickSizeOuter(), 6);
-  test.equal(a.tickPadding(), 3);
-  test.end();
+  assert.strictEqual(a.scale(), s);
+  assert.deepStrictEqual(a.tickArguments(), []);
+  assert.strictEqual(a.tickValues(), null);
+  assert.strictEqual(a.tickFormat(), null);
+  assert.strictEqual(a.tickSize(), 6);
+  assert.strictEqual(a.tickSizeInner(), 6);
+  assert.strictEqual(a.tickSizeOuter(), 6);
+  assert.strictEqual(a.tickPadding(), 3);
 });
 
-tape("axis.ticks(arguments…) sets the tick arguments", function(test) {
-  var a = d3.axisLeft(d3.scaleLinear()).ticks(20);
-  test.deepEqual(a.tickArguments(), [20]);
+it("axis.ticks(arguments…) sets the tick arguments", () => {
+  const a = d3.axisLeft(scaleLinear()).ticks(20);
+  assert.deepStrictEqual(a.tickArguments(), [20]);
   a.ticks();
-  test.deepEqual(a.tickArguments(), []);
-  test.end();
+  assert.deepStrictEqual(a.tickArguments(), []);
 });
 
-tape("axis.tickArguments(null) sets the tick arguments to the empty array", function(test) {
-  var a = d3.axisLeft(d3.scaleLinear()).tickArguments(null);
-  test.deepEqual(a.tickArguments(), []);
-  test.end();
+it("axis.tickArguments(null) sets the tick arguments to the empty array", () => {
+  const a = d3.axisLeft(scaleLinear()).tickArguments(null);
+  assert.deepStrictEqual(a.tickArguments(), []);
 });
 
-tape("axis.tickArguments() makes a defensive copy of the tick arguments", function(test) {
-  var a = d3.axisLeft(d3.scaleLinear()).tickArguments([20]),
+it("axis.tickArguments() makes a defensive copy of the tick arguments", () => {
+  const a = d3.axisLeft(scaleLinear()).tickArguments([20]),
       v = a.tickArguments();
   v.push(10);
-  test.deepEqual(a.tickArguments(), [20]);
-  test.end();
+  assert.deepStrictEqual(a.tickArguments(), [20]);
 });
 
-tape("axis.tickValues(null) clears any explicitly-set tick values", function(test) {
-  var a = d3.axisLeft(d3.scaleLinear()).tickValues([1, 2, 3]);
-  test.deepEqual(a.tickValues(), [1, 2, 3]);
+it("axis.tickValues(null) clears any explicitly-set tick values", () => {
+  const a = d3.axisLeft(scaleLinear()).tickValues([1, 2, 3]);
+  assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
   a.tickValues([]);
-  test.deepEqual(a.tickValues(), []);
+  assert.deepStrictEqual(a.tickValues(), []);
   a.tickValues(null);
-  test.equal(a.tickValues(), null);
-  test.end();
+  assert.strictEqual(a.tickValues(), null);
 });
 
-tape("axis.tickValues(values) sets the tick values explicitly", function(test) {
-  var a = d3.axisLeft(d3.scaleLinear()).tickValues([1, 2, 3]);
-  test.deepEqual(a.tickValues(), [1, 2, 3]);
-  test.end();
+it("axis.tickValues(values) sets the tick values explicitly", () => {
+  const a = d3.axisLeft(scaleLinear()).tickValues([1, 2, 3]);
+  assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
 
-tape("axis.tickValues(values) makes a defensive copy of the specified tick values", function(test) {
-  var v = [1, 2, 3],
-      a = d3.axisLeft(d3.scaleLinear()).tickValues(v);
+it("axis.tickValues(values) makes a defensive copy of the specified tick values", () => {
+  const v = [1, 2, 3],
+      a = d3.axisLeft(scaleLinear()).tickValues(v);
   v.push(4);
-  test.deepEqual(a.tickValues(), [1, 2, 3]);
-  test.end();
+  assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
 
-tape("axis.tickValues() makes a defensive copy of the tick values", function(test) {
-  var a = d3.axisLeft(d3.scaleLinear()).tickValues([1, 2, 3]),
+it("axis.tickValues() makes a defensive copy of the tick values", () => {
+  const a = d3.axisLeft(scaleLinear()).tickValues([1, 2, 3]),
       v = a.tickValues();
   v.push(4);
-  test.deepEqual(a.tickValues(), [1, 2, 3]);
-  test.end();
+  assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
 
-tape("axisLeft(selection) produces the expected result", function(test) {
-  var bodyActual = (new jsdom.JSDOM("<!DOCTYPE html><svg><g></g></svg>")).window.document.body,
+it("axisLeft(selection) produces the expected result", () => {
+  const bodyActual = (new jsdom.JSDOM("<!DOCTYPE html><svg><g></g></svg>")).window.document.body,
       bodyExpected = (new jsdom.JSDOM(file("axis-left.html"))).window.document.body;
-  d3.select(bodyActual).select("g").call(d3.axisLeft(d3.scaleLinear()));
-  test.equal(bodyActual.outerHTML, bodyExpected.outerHTML);
-  test.end();
+  select(bodyActual).select("g").call(d3.axisLeft(scaleLinear()));
+  assert.strictEqual(bodyActual.outerHTML, bodyExpected.outerHTML);
 });
 
-tape("axisLeft.scale(nonNumericRangeScale)(selection) produces the expected result", function(test) {
-  var bodyActual = (new jsdom.JSDOM("<!DOCTYPE html><svg><g></g></svg>")).window.document.body,
+it("axisLeft.scale(nonNumericRangeScale)(selection) produces the expected result", () => {
+  const bodyActual = (new jsdom.JSDOM("<!DOCTYPE html><svg><g></g></svg>")).window.document.body,
       bodyExpected = (new jsdom.JSDOM(file("axis-left-500.html"))).window.document.body;
-  d3.select(bodyActual).select("g").call(d3.axisLeft(d3.scaleLinear().range([0, "500"])));
-  test.equal(bodyActual.outerHTML, bodyExpected.outerHTML);
-  test.end();
+  select(bodyActual).select("g").call(d3.axisLeft(scaleLinear().range([0, "500"])));
+  assert.strictEqual(bodyActual.outerHTML, bodyExpected.outerHTML);
 });
 
 function file(file) {
-  return fs.readFileSync(path.join(__dirname, file), "utf8").replace(/\n\s*/mg, "");
+  return readFileSync(path.join("./test", file), "utf8").replace(/\n\s*/mg, "");
 }

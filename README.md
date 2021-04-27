@@ -4,13 +4,23 @@ The axis component renders human-readable reference marks for [scales](https://g
 
 ## Installing
 
-If you use NPM, `npm install d3-axis`. Otherwise, download the [latest release](https://github.com/d3/d3-axis/releases/latest). You can also load directly from [d3js.org](https://d3js.org), either as a [standalone library](https://d3js.org/d3-axis.v2.min.js) or as part of [D3](https://github.com/d3/d3). (To be useful, you’ll also want to use [d3-scale](https://github.com/d3/d3-scale) and [d3-selection](https://github.com/d3/d3-selection), but these are soft dependencies.) AMD, CommonJS, and vanilla environments are supported. In vanilla, a `d3` global is exported:
+If you use npm, `npm install d3-axis`. You can also download the [latest release on GitHub](https://github.com/d3/d3-axis/releases/latest). For vanilla HTML in modern browsers, import d3-axis from Skypack:
 
 ```html
-<script src="https://d3js.org/d3-axis.v2.min.js"></script>
+<script type="module">
+import {axisLeft} from "https://cdn.skypack.dev/d3-axis@3";
+
+const axis = axisLeft(scale);
+</script>
+```
+
+For legacy environments, you can load d3-axis’s UMD bundle from an npm-based CDN such as jsDelivr; a `d3` global is exported:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/d3-axis@3"></script>
 <script>
 
-var axis = d3.axisLeft(scale);
+const axis = d3.axisLeft(scale);
 
 </script>
 ```
