@@ -1,4 +1,3 @@
-import {slice} from "./array.js";
 import identity from "./identity.js";
 
 var top = 1,
@@ -120,11 +119,11 @@ function axis(orient, scale) {
   };
 
   axis.ticks = function() {
-    return tickArguments = slice.call(arguments), axis;
+    return tickArguments = Array.from(arguments), axis;
   };
 
   axis.tickArguments = function(_) {
-    return arguments.length ? (tickArguments = _ == null ? [] : slice.call(_), axis) : tickArguments.slice();
+    return arguments.length ? (tickArguments = _ == null ? [] : Array.from(_), axis) : tickArguments.slice();
   };
 
   axis.tickValues = function(_) {
