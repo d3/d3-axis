@@ -8,9 +8,11 @@ If you use npm, `npm install d3-axis`. You can also download the [latest release
 
 ```html
 <script type="module">
+
 import {axisLeft} from "https://cdn.skypack.dev/d3-axis@3";
 
 const axis = axisLeft(scale);
+
 </script>
 ```
 
