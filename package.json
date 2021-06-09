@@ -1,6 +1,6 @@
 {
   "name": "d3-axis",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Displays automatic reference lines for scales.",
   "homepage": "https://d3js.org/d3-axis/",
   "repository": {
