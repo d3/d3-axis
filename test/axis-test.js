@@ -1,8 +1,4 @@
 import assert from "assert";
-import {readFileSync} from "fs";
-import {join} from "path";
-import {JSDOM} from "jsdom";
-import {select} from "d3-selection";
 import {scaleLinear} from "d3-scale";
 import {axisLeft} from "../src/index.js";
 
@@ -65,21 +61,3 @@ it("axis.tickValues() makes a defensive copy of the tick values", () => {
   v.push(4);
   assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
-
-it("axisLeft(selection) produces the expected result", () => {
-  const bodyActual = (new JSDOM("<!DOCTYPE html><svg><g></g></svg>")).window.document.body;
-  const bodyExpected = (new JSDOM(file("axis-left.html"))).window.document.body;
-  select(bodyActual).select("g").call(axisLeft(scaleLinear()));
-  assert.strictEqual(bodyActual.outerHTML, bodyExpected.outerHTML);
-});
-
-it("axisLeft.scale(nonNumericRangeScale)(selection) produces the expected result", () => {
-  const bodyActual = (new JSDOM("<!DOCTYPE html><svg><g></g></svg>")).window.document.body;
-  const bodyExpected = (new JSDOM(file("axis-left-500.html"))).window.document.body;
-  select(bodyActual).select("g").call(axisLeft(scaleLinear().range([0, "500"])));
-  assert.strictEqual(bodyActual.outerHTML, bodyExpected.outerHTML);
-});
-
-function file(file) {
-  return readFileSync(join("./test", file), "utf8").replace(/\n\s*/mg, "");
-}
