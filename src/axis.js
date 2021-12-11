@@ -83,9 +83,9 @@ function axis(orient, scale) {
           .attr("opacity", epsilon)
           .attr("transform", function(d) { return isFinite(d = position(d)) ? transform(d + offset) : this.getAttribute("transform"); });
 
-      path.attr("opacity", 1);
+      path.attr("stroke-opacity", 1);
       pathExit = pathExit.transition(context)
-          .attr("opacity", epsilon);
+          .attr("stroke-opacity", epsilon);
 
       tickEnter
           .attr("opacity", epsilon)
