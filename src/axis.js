@@ -38,7 +38,8 @@ function axis(orient, scale) {
       offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5,
       k = orient === top || orient === left ? -1 : 1,
       x = orient === left || orient === right ? "x" : "y",
-      transform = orient === top || orient === bottom ? translateX : translateY;
+      transform = orient === top || orient === bottom ? translateX : translateY,
+      domainLine = true;
 
   function axis(context) {
     var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
@@ -49,7 +50,8 @@ function axis(orient, scale) {
         range1 = +range[range.length - 1] + offset,
         position = (scale.bandwidth ? center : number)(scale.copy(), offset),
         selection = context.selection ? context.selection() : context,
-        path = selection.selectAll(".domain").data([null]),
+        path = selection.selectAll(".domain").data(domainLine ? [null] : []),
+        pathExit = path.exit(),
         tick = selection.selectAll(".tick").data(values, scale).order(),
         tickExit = tick.exit(),
         tickEnter = tick.enter().append("g").attr("class", "tick"),
@@ -81,12 +83,18 @@ function axis(orient, scale) {
           .attr("opacity", epsilon)
           .attr("transform", function(d) { return isFinite(d = position(d)) ? transform(d + offset) : this.getAttribute("transform"); });
 
+      path.attr("stroke-opacity", 1);
+      pathExit = pathExit.transition(context)
+          .attr("stroke-opacity", epsilon);
+
       tickEnter
           .attr("opacity", epsilon)
           .attr("transform", function(d) { var p = this.parentNode.__axis; return transform((p && isFinite(p = p(d)) ? p : position(d)) + offset); });
     }
 
     tickExit.remove();
+
+    pathExit.remove();
 
     path
         .attr("d", orient === left || orient === right
@@ -152,6 +160,10 @@ function axis(orient, scale) {
 
   axis.offset = function(_) {
     return arguments.length ? (offset = +_, axis) : offset;
+  };
+
+  axis.line = function(_) {
+    return arguments.length ? (domainLine = !!_, axis) : domainLine;
   };
 
   return axis;
