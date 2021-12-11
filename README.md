@@ -208,3 +208,7 @@ If *padding* is specified, sets the padding to the specified value in pixels and
 <a name="axis_offset" href="#axis_offset">#</a> <i>axis</i>.<b>offset</b>([<i>offset</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
 
 If *offset* is specified, sets the offset to the specified value in pixels and returns the axis. If *offset* is not specified, returns the current offset which defaults to 0 on devices with a [devicePixelRatio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) greater than 1, and 0.5px otherwise. This default offset ensures crisp edges on low-resolution devices.
+
+<a name="axis_line" href="#axis_line">#</a> <i>axis</i>.<b>line</b>([<i>line</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
+
+If *line* is specified, enables (if truthy) or suppresses (if falsy) the domain line (and outer ticks) and returns the axis. If *line* is not specified, returns the current line option which defaults to true.

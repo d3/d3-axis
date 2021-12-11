@@ -1,6 +1,6 @@
 import {scaleLinear} from "d3-scale";
 import {create} from "d3-selection";
-import {axisLeft} from "../src/index.js";
+import {axisBottom, axisLeft} from "../src/index.js";
 
 export function axisLeftScaleLinear() {
   const svg = create("svg");
@@ -11,5 +11,12 @@ export function axisLeftScaleLinear() {
 export function axisLeftScaleLinearNonNumericRange() {
   const svg = create("svg");
   svg.append("g").call(axisLeft(scaleLinear().range([0, "500"])));
+  return svg.node();
+}
+
+export function axisBottomScaleLinearNoLine() {
+  const axis = axisBottom(scaleLinear([0, 10], [10, 290])).line(false);
+  const svg = create("svg");
+  svg.append("g").call(axis);
   return svg.node();
 }
