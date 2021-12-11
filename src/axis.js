@@ -101,8 +101,7 @@ function axis(orient, scale) {
         .attr(x + "2", k * tickSizeInner);
 
     text
-        .attr(x, k * spacing)
-        .text(format);
+        .call(maybeMultilineText(format, orient, x, k * spacing));
 
     selection.filter(entering)
         .attr("fill", "none")
@@ -171,4 +170,23 @@ export function axisBottom(scale) {
 
 export function axisLeft(scale) {
   return axis(left, scale);
+}
+
+function maybeMultilineText(format, orient, x, space) {
+  const repeats = [];
+  const lines = [];
+  return (text) => {
+    text
+    .attr(x, space)
+    .text((d, i) => {
+      const cur = format(d) || "";
+      lines[i] = cur.split("\n");
+      return lines[i].shift();
+    }).selectAll("tspan")
+      .data((d, i) => lines[i])
+      .join("tspan")
+        .text((d, j) => d[0] === "?" ? d === repeats[j] ? " " : (repeats[j] = d).slice(1) : d)
+        .attr("x", orient === left || orient === right ? space : 0)
+        .attr("dy", orient === top ? "-1.2em" : "1.2em");
+  };
 }
