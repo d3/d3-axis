@@ -38,7 +38,9 @@ function axis(orient, scale) {
       offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5,
       k = orient === top || orient === left ? -1 : 1,
       x = orient === left || orient === right ? "x" : "y",
-      transform = orient === top || orient === bottom ? translateX : translateY;
+      transform = orient === top || orient === bottom ? translateX : translateY,
+      multiline = "auto",
+      norepeat = true;
 
   function axis(context) {
     var values = tickValues == null ? (scale.ticks ? scale.ticks.apply(scale, tickArguments) : scale.domain()) : tickValues,
@@ -101,7 +103,7 @@ function axis(orient, scale) {
         .attr(x + "2", k * tickSizeInner);
 
     text
-        .call(maybeMultilineText(format, orient, x, k * spacing));
+        .call(maybeMultilineText(format, orient, x, k * spacing, multiline, norepeat));
 
     selection.filter(entering)
         .attr("fill", "none")
@@ -131,6 +133,14 @@ function axis(orient, scale) {
 
   axis.tickFormat = function(_) {
     return arguments.length ? (tickFormat = _, axis) : tickFormat;
+  };
+
+  axis.tickMultiline = function(_) {
+    return arguments.length ? (multiline = _ === "auto" ? undefined : !!_, axis) : multiline;
+  }
+
+  axis.tickNoRepeat = function(_) {
+    return arguments.length ? (norepeat = !!_, axis) : norepeat;
   };
 
   axis.tickSize = function(_) {
@@ -172,21 +182,32 @@ export function axisLeft(scale) {
   return axis(left, scale);
 }
 
-function maybeMultilineText(format, orient, x, space) {
+function maybeMultilineText(format, orient, x, space, multiline, norepeat) {
   const repeats = [];
   const lines = [];
+  let multi = multiline === "auto" ? false : multiline;
   return (text) => {
     text
     .attr(x, space)
-    .text((d, i) => {
-      const cur = format(d) || "";
-      lines[i] = cur.split("\n");
-      return lines[i].shift();
-    }).selectAll("tspan")
-      .data((d, i) => lines[i])
-      .join("tspan")
-        .text((d, j) => d[0] === "?" ? d === repeats[j] ? " " : (repeats[j] = d).slice(1) : d)
-        .attr("x", orient === left || orient === right ? space : 0)
-        .attr("dy", orient === top ? "-1.2em" : "1.2em");
+    .each(function(_, i) {
+      const label = format.apply(this, arguments);
+      const l = label == null
+        ? []
+        : `${label}`.replace(/\s*$/m, "").split(/\r\n?|\n/);
+      if (l.length > 1 && multiline === "auto") multi = true;
+      lines[i] = l;
+    });
+    if (multi) {
+      text
+      .text("")
+      .selectAll("tspan")
+        .data((_, i) => lines[i])
+        .join("tspan")
+          .text((d, j) => norepeat && d === repeats[j] ? "\u00A0" : (repeats[j] = d))
+          .attr("x", orient === left || orient === right ? space : 0)
+          .attr("dy", (_, j) => j === 0 ? null : orient === top ? "-1.2em" : "1.2em");
+    } else {
+      text.text((d, i) => lines[i].join("\n"));
+    }
   };
 }
