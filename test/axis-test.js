@@ -76,4 +76,4 @@ it("axis.tickSize(value) accepts a function", () => {
   const v = function(d, i ) { return i * 2; }
   const a = axisLeft(scaleLinear()).tickSize(v);
   assert.strictEqual(a.tickSize(), v);
-})
+});
