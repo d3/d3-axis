@@ -136,7 +136,7 @@ function axis(orient, scale) {
   };
 
   axis.tickSize = function(_) {
-    return arguments.length ? (typeof _ === "function" ? (tickSizeFunction = _, axis) : (tickSizeFunction = null, tickSizeInner = tickSizeOuter = +_, axis)) : tickSizeFunction || tickSizeInner;
+    return arguments.length ? (typeof _ === "function" ? (tickSizeInner = tickSizeOuter = null, tickSizeFunction = _, axis) : (tickSizeFunction = null, tickSizeInner = tickSizeOuter = +_, axis)) : tickSizeFunction || tickSizeInner;
   };
 
   axis.tickSizeInner = function(_) {
