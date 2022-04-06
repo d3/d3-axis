@@ -35,6 +35,7 @@ function axis(orient, scale) {
       tickSizeInner = 6,
       tickSizeOuter = 6,
       tickPadding = 3,
+      tickSizeFunction = null,
       offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5,
       k = orient === top || orient === left ? -1 : 1,
       x = orient === left || orient === right ? "x" : "y",
@@ -98,7 +99,7 @@ function axis(orient, scale) {
         .attr("transform", function(d) { return transform(position(d) + offset); });
 
     line
-        .attr(x + "2", k * tickSizeInner);
+        .attr(x + "2", function(d, i) { return tickSizeFunction ? tickSizeFunction(d, i) : k * tickSizeInner });
 
     text
         .attr(x, k * spacing)
@@ -135,7 +136,7 @@ function axis(orient, scale) {
   };
 
   axis.tickSize = function(_) {
-    return arguments.length ? (tickSizeInner = tickSizeOuter = +_, axis) : tickSizeInner;
+    return arguments.length ? (typeof _ === "function" ? (tickSizeFunction = _, axis) : (tickSizeFunction = null, tickSizeInner = tickSizeOuter = +_, axis)) : tickSizeFunction || tickSizeInner;
   };
 
   axis.tickSizeInner = function(_) {

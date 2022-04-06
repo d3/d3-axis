@@ -189,9 +189,9 @@ axis.ticks(10, ",f");
 
 This has the advantage of setting the format precision automatically based on the tick interval.
 
-<a name="axis_tickSize" href="#axis_tickSize">#</a> <i>axis</i>.<b>tickSize</b>([<i>size</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
+<a name="axis_tickSize" href="#axis_tickSize">#</a> <i>axis</i>.<b>tickSize</b>([<i>value</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
 
-If *size* is specified, sets the [inner](#axis_tickSizeInner) and [outer](#axis_tickSizeOuter) tick size to the specified value and returns the axis. If *size* is not specified, returns the current inner tick size, which defaults to 6.
+If *value* is a function, it is evaluated for each tick, in order, being passed the current tick datum (d) and the current index (i) and returns the axis. If *value* is a constant, sets the [inner](#axis_tickSizeInner) and [outer](#axis_tickSizeOuter) tick size to the specified value, removes any previously set tick size function and returns the axis. If *value* is not specified, returns the current tick size function (if specified) or the inner tick size, which defaults to 6.
 
 <a name="axis_tickSizeInner" href="#axis_tickSizeInner">#</a> <i>axis</i>.<b>tickSizeInner</b>([<i>size</i>]) · [Source](https://github.com/d3/d3-axis/blob/master/src/axis.js)
 

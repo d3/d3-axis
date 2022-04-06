@@ -13,3 +13,9 @@ export function axisLeftScaleLinearNonNumericRange() {
   svg.append("g").call(axisLeft(scaleLinear().range([0, "500"])));
   return svg.node();
 }
+
+export function axisLeftTickSizeFunction() {
+  const svg = create("svg");
+  svg.append("g").call(axisLeft(scaleLinear()).tickSize(function(d, i) { return i * 2 }));
+  return svg.node();
+}

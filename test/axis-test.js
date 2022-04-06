@@ -66,3 +66,14 @@ it("axis.tickValues(values) accepts an iterable", () => {
   const a = axisLeft(scaleLinear()).tickValues(new Set([1, 2, 3]));
   assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
+
+it("axis.tickSize(value) accepts a number", () => {
+  const a = axisLeft(scaleLinear()).tickSize(5);
+  assert.strictEqual(a.tickSize(), 5);
+});
+
+it("axis.tickSize(value) accepts a function", () => {
+  const v = function(d, i ) { return i * 2; }
+  const a = axisLeft(scaleLinear()).tickSize(v);
+  assert.strictEqual(a.tickSize(), v);
+})
