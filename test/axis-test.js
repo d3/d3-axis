@@ -73,7 +73,7 @@ it("axis.tickSize(value) accepts a number", () => {
 });
 
 it("axis.tickSize(value) accepts a function", () => {
-  const v = function(d, i ) { return i * 2; }
+  const v = (d, i) => i * 2;
   const a = axisLeft(scaleLinear()).tickSize(v);
   assert.strictEqual(a.tickSize(), v);
 });
