@@ -99,7 +99,7 @@ function axis(orient, scale) {
         .attr("transform", function(d) { return transform(position(d) + offset); });
 
     line
-        .attr(x + "2", function(d, i) { return tickSizeFunction ? tickSizeFunction(d, i) : k * tickSizeInner });
+        .attr(x + "2", tickSizeFunction == null ? k * tickSizeInner : tickSizeFunction);
 
     text
         .attr(x, k * spacing)
