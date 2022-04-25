@@ -69,7 +69,9 @@ function axis(orient, scale) {
 
     text = text.merge(tickEnter.append("text")
         .attr("fill", "currentColor")
-        .attr(x, k * spacing)
+        .attr(x, function(d, i, nodes) { 
+            return tickSizeFunction == null ? k * spacing : k * spacing + tickSizeFunction(d, i, nodes)
+        })
         .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
 
     if (context !== selection) {
@@ -102,7 +104,9 @@ function axis(orient, scale) {
         .attr(x + "2", tickSizeFunction == null ? k * tickSizeInner : tickSizeFunction);
 
     text
-        .attr(x, k * spacing)
+        .attr(x, function(d, i, nodes) { 
+            return tickSizeFunction == null ? k * spacing : k * spacing + tickSizeFunction(d, i, nodes)
+        })
         .text(format);
 
     selection.filter(entering)
