@@ -35,6 +35,7 @@ function axis(orient, scale) {
       tickSizeInner = 6,
       tickSizeOuter = 6,
       tickPadding = 3,
+      tickSizeFunction = null,
       offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5,
       k = orient === top || orient === left ? -1 : 1,
       x = orient === left || orient === right ? "x" : "y",
@@ -68,7 +69,7 @@ function axis(orient, scale) {
 
     text = text.merge(tickEnter.append("text")
         .attr("fill", "currentColor")
-        .attr(x, k * spacing)
+        .attr(x, tickSizeFunction == null ? k * spacing : function(d, i, nodes) { return k * spacing + tickSizeFunction(d, i, nodes); })
         .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
 
     if (context !== selection) {
@@ -98,10 +99,12 @@ function axis(orient, scale) {
         .attr("transform", function(d) { return transform(position(d) + offset); });
 
     line
-        .attr(x + "2", k * tickSizeInner);
+        .attr(x + "2", tickSizeFunction == null ? k * tickSizeInner : tickSizeFunction);
 
     text
-        .attr(x, k * spacing)
+        .attr(x, function(d, i, nodes) { 
+            return tickSizeFunction == null ? k * spacing : k * spacing + tickSizeFunction(d, i, nodes)
+        })
         .text(format);
 
     selection.filter(entering)
@@ -135,7 +138,7 @@ function axis(orient, scale) {
   };
 
   axis.tickSize = function(_) {
-    return arguments.length ? (tickSizeInner = tickSizeOuter = +_, axis) : tickSizeInner;
+    return arguments.length ? (typeof _ === "function" ? (tickSizeInner = tickSizeOuter = null, tickSizeFunction = _, axis) : (tickSizeFunction = null, tickSizeInner = tickSizeOuter = +_, axis)) : tickSizeFunction || tickSizeInner;
   };
 
   axis.tickSizeInner = function(_) {
