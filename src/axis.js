@@ -69,9 +69,7 @@ function axis(orient, scale) {
 
     text = text.merge(tickEnter.append("text")
         .attr("fill", "currentColor")
-        .attr(x, function(d, i, nodes) { 
-            return tickSizeFunction == null ? k * spacing : k * spacing + tickSizeFunction(d, i, nodes)
-        })
+        .attr(x, tickSizeFunction == null ? k * spacing : function(d, i, nodes) { return k * spacing + tickSizeFunction(d, i, nodes); })
         .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em"));
 
     if (context !== selection) {
