@@ -1,5 +1,19 @@
 import identity from "./identity.js";
 
+var lineAxisAttribute = {
+  1: 'x2',
+  2: 'y2',
+  3: 'x2',
+  4: 'y2'
+}
+
+var textAxisAttribute = {
+  1: 'x',
+  2: 'y',
+  3: 'x',
+  4: 'y'
+}
+
 var top = 1,
     right = 2,
     bottom = 3,
@@ -98,10 +112,13 @@ function axis(orient, scale) {
         .attr("transform", function(d) { return transform(position(d) + offset); });
 
     line
-        .attr(x + "2", k * tickSizeInner);
+        .attr(x + "2", k * tickSizeInner)
+        .attr(lineAxisAttribute[orient], null);
 
     text
         .attr(x, k * spacing)
+        .attr("dy", orient === top ? "0em" : orient === bottom ? "0.71em" : "0.32em")
+        .attr(textAxisAttribute[orient], null)
         .text(format);
 
     selection.filter(entering)
@@ -111,6 +128,7 @@ function axis(orient, scale) {
         .attr("text-anchor", orient === right ? "start" : orient === left ? "end" : "middle");
 
     selection
+        .attr("text-anchor", orient === right ? "start" : orient === left ? "end" : "middle")
         .each(function() { this.__axis = position; });
   }
 
