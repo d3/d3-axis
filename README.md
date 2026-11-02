@@ -7,6 +7,6 @@ The axis component renders human-readable reference marks for [scales](https://g
 ## Resources
 
 - [Documentation](https://d3js.org/d3-axis)
-- [Examples](https://observablehq.com/collection/@d3/d3-axis)
+- [Examples](https://observablehq.com/@d3/-/collection/d3-axis)
 - [Releases](https://github.com/d3/d3-axis/releases)
 - [Getting help](https://d3js.org/community)
