@@ -1,6 +1,6 @@
+import {axisLeft} from "d3-axis";
 import {scaleLinear} from "d3-scale";
 import {create} from "d3-selection";
-import {axisLeft} from "../src/index.js";
 
 export function axisLeftScaleLinear() {
   const svg = create("svg");

@@ -1,6 +1,6 @@
 {
   "name": "d3-axis",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Displays automatic reference lines for scales.",
   "homepage": "https://d3js.org/d3-axis/",
   "repository": {
@@ -37,8 +37,8 @@
     "@eslint/js": "^10.0.1",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.2",
-    "d3-scale": "^4.0.2",
-    "d3-selection": "^3.0.0",
+    "d3-scale": "^4.0.3",
+    "d3-selection": "^3.0.1",
     "eslint": "^10.14.0",
     "globals": "^17.14.0",
     "js-beautify": "^1.15.4",
