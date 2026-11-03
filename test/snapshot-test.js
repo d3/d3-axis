@@ -1,6 +1,6 @@
-import assert from "assert";
-import {mkdirSync, promises} from "fs";
-import {resolve, basename} from "path";
+import assert from "node:assert";
+import {mkdirSync, promises} from "node:fs";
+import {resolve, basename} from "node:path";
 import beautify from "js-beautify";
 import it from "./jsdom.js";
 import * as snapshots from "./snapshots.js";

@@ -1,5 +1,5 @@
+import assert from "node:assert";
 import {it} from "vitest";
-import assert from "assert";
 import {scaleLinear} from "d3-scale";
 import {axisLeft} from "../src/index.js";
 
