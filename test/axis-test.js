@@ -1,6 +1,7 @@
-import assert from "assert";
+import assert from "node:assert";
+import {it} from "vitest";
+import {axisLeft} from "d3-axis";
 import {scaleLinear} from "d3-scale";
-import {axisLeft} from "../src/index.js";
 
 it("axisLeft(scale) has the expected defaults", () => {
   const s = scaleLinear();
