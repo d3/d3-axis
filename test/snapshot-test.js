@@ -1,8 +1,9 @@
+// @vitest-environment jsdom
 import assert from "node:assert";
 import {mkdirSync, promises} from "node:fs";
 import {resolve, basename} from "node:path";
 import beautify from "js-beautify";
-import it from "./jsdom.js";
+import {it} from "vitest";
 import * as snapshots from "./snapshots.js";
 
 const {readFile, writeFile} = promises;
