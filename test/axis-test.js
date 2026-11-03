@@ -1,9 +1,9 @@
-import {test} from "vitest";
+import {it} from "vitest";
 import assert from "assert";
 import {scaleLinear} from "d3-scale";
 import {axisLeft} from "../src/index.js";
 
-test("axisLeft(scale) has the expected defaults", () => {
+it("axisLeft(scale) has the expected defaults", () => {
   const s = scaleLinear();
   const a = axisLeft(s);
   assert.strictEqual(a.scale(), s);
@@ -16,26 +16,26 @@ test("axisLeft(scale) has the expected defaults", () => {
   assert.strictEqual(a.tickPadding(), 3);
 });
 
-test("axis.ticks(arguments…) sets the tick arguments", () => {
+it("axis.ticks(arguments…) sets the tick arguments", () => {
   const a = axisLeft(scaleLinear()).ticks(20);
   assert.deepStrictEqual(a.tickArguments(), [20]);
   a.ticks();
   assert.deepStrictEqual(a.tickArguments(), []);
 });
 
-test("axis.tickArguments(null) sets the tick arguments to the empty array", () => {
+it("axis.tickArguments(null) sets the tick arguments to the empty array", () => {
   const a = axisLeft(scaleLinear()).tickArguments(null);
   assert.deepStrictEqual(a.tickArguments(), []);
 });
 
-test("axis.tickArguments() makes a defensive copy of the tick arguments", () => {
+it("axis.tickArguments() makes a defensive copy of the tick arguments", () => {
   const a = axisLeft(scaleLinear()).tickArguments([20]);
   const v = a.tickArguments();
   v.push(10);
   assert.deepStrictEqual(a.tickArguments(), [20]);
 });
 
-test("axis.tickValues(null) clears any explicitly-set tick values", () => {
+it("axis.tickValues(null) clears any explicitly-set tick values", () => {
   const a = axisLeft(scaleLinear()).tickValues([1, 2, 3]);
   assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
   a.tickValues([]);
@@ -44,26 +44,26 @@ test("axis.tickValues(null) clears any explicitly-set tick values", () => {
   assert.strictEqual(a.tickValues(), null);
 });
 
-test("axis.tickValues(values) sets the tick values explicitly", () => {
+it("axis.tickValues(values) sets the tick values explicitly", () => {
   const a = axisLeft(scaleLinear()).tickValues([1, 2, 3]);
   assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
 
-test("axis.tickValues(values) makes a defensive copy of the specified tick values", () => {
+it("axis.tickValues(values) makes a defensive copy of the specified tick values", () => {
   const v = [1, 2, 3];
   const a = axisLeft(scaleLinear()).tickValues(v);
   v.push(4);
   assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
 
-test("axis.tickValues() makes a defensive copy of the tick values", () => {
+it("axis.tickValues() makes a defensive copy of the tick values", () => {
   const a = axisLeft(scaleLinear()).tickValues([1, 2, 3]);
   const v = a.tickValues();
   v.push(4);
   assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
 
-test("axis.tickValues(values) accepts an iterable", () => {
+it("axis.tickValues(values) accepts an iterable", () => {
   const a = axisLeft(scaleLinear()).tickValues(new Set([1, 2, 3]));
   assert.deepStrictEqual(a.tickValues(), [1, 2, 3]);
 });
